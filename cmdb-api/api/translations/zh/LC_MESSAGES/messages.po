@@ -20,73 +20,73 @@ msgstr ""
 
 #: api/lib/resp_format.py:7
 msgid "unauthorized"
-msgstr "未认证"
+msgstr "Not certified"
 
 #: api/lib/resp_format.py:8
 msgid "unknown error"
-msgstr "未知错误"
+msgstr "Unknown error"
 
 #: api/lib/resp_format.py:10
 msgid "Illegal request"
-msgstr "不合法的请求"
+msgstr "Illegal requests"
 
 #: api/lib/resp_format.py:11
 msgid "Invalid operation"
-msgstr "无效的操作"
+msgstr "Invalid action"
 
 #: api/lib/resp_format.py:13
 msgid "does not exist"
-msgstr "不存在"
+msgstr "does not exist"
 
 #: api/lib/resp_format.py:15
 msgid "There is a circular dependency!"
-msgstr "存在循环依赖!"
+msgstr "There is a circular dependency!"
 
 #: api/lib/resp_format.py:17
 msgid "Unknown search error"
-msgstr "未知搜索错误"
+msgstr "Unknown search error"
 
 #: api/lib/resp_format.py:20
 msgid "The json format seems to be incorrect, please confirm carefully!"
-msgstr "# json格式似乎不正确了, 请仔细确认一下!"
+msgstr "# json The format doesn't seem to be correct, please double-check!"
 
 #: api/lib/resp_format.py:23
 msgid ""
 "The format of parameter {} is incorrect, the format must be: yyyy-mm-dd "
 "HH:MM:SS"
-msgstr "参数 {} 格式不正确, 格式必须是: yyyy-mm-dd HH:MM:SS"
+msgstr "The parameter {} is incorrectly formatted, the format must be: yyyy-mm-dd HH:MM:SS"
 
 #: api/lib/resp_format.py:25
 msgid "The value of parameter {} cannot be empty!"
-msgstr "参数 {} 的值不能为空!"
+msgstr "The value of parameter {} cannot be empty!"
 
 #: api/lib/resp_format.py:26
 msgid "The request is missing parameters {}"
-msgstr "请求缺少参数 {}"
+msgstr "The request is missing parameters {}"
 
 #: api/lib/resp_format.py:27
 msgid "Invalid value for parameter {}"
-msgstr "参数 {} 的值无效"
+msgstr "Invalid value for parameter {}"
 
 #: api/lib/resp_format.py:28
 msgid "The length of parameter {} must be <= {}"
-msgstr "参数 {} 的长度必须 <= {}"
+msgstr "The length of parameter {} must be <= {}"
 
 #: api/lib/resp_format.py:30
 msgid "Role {} can only operate!"
-msgstr "角色 {} 才能操作!"
+msgstr "Role {} can only operate!"
 
 #: api/lib/resp_format.py:31
 msgid "User {} does not exist"
-msgstr "用户 {} 不存在"
+msgstr "User {} does not exist"
 
 #: api/lib/resp_format.py:32
 msgid "You do not have {} permission for resource: {}!"
-msgstr "您没有资源: {} 的{}权限!"
+msgstr "You do not have {} permission for resource: {}!"
 
 #: api/lib/resp_format.py:33
 msgid "You do not have permission to operate!"
-msgstr "您没有操作权限!"
+msgstr "You do not have permission to operate!"
 
 #: api/lib/resp_format.py:34
 msgid "Only the creator or administrator has permission!"

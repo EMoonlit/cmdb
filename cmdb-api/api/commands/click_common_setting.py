@@ -124,7 +124,7 @@ class InitDepartment(object):
 
     def init_wide_company(self):
         department_id = 0
-        department_name = '全公司'
+        department_name = 'Company_wide'
         department_parent_id = -1
 
         self.run_common(department_id, department_name, department_parent_id)
