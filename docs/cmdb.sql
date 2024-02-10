@@ -62,12 +62,12 @@ CREATE TABLE `acl_audit_permission_logs` (
   `updated_at` datetime DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `app_id` int(11) DEFAULT NULL,
-  `operate_uid` int(11) DEFAULT NULL COMMENT 'Operator uid',
-  `operate_type` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Operation type',
-  `rid` int(11) DEFAULT NULL COMMENT 'Role id',
-  `resource_type_id` int(11) DEFAULT NULL COMMENT 'Resource type id',
+  `operate_uid` int(11) DEFAULT NULL COMMENT 'Operator UID',
+  `operate_type` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Operation Type',
+  `rid` int(11) DEFAULT NULL COMMENT 'Role ID',
+  `resource_type_id` int(11) DEFAULT NULL COMMENT 'Resource Type ID',
   `resource_ids` json DEFAULT NULL COMMENT 'Resources',
-  `group_ids` json DEFAULT NULL COMMENT 'Resource group',
+  `group_ids` json DEFAULT NULL COMMENT 'Resource Groups',
   `permission_ids` json DEFAULT NULL COMMENT 'Permissions',
   `source` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Source',
   PRIMARY KEY (`id`),
@@ -104,13 +104,13 @@ CREATE TABLE `acl_audit_resource_logs` (
   `updated_at` datetime DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `app_id` int(11) DEFAULT NULL,
-  `operate_uid` int(11) DEFAULT NULL COMMENT 'Operator uid',
-  `operate_type` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Operation type',
+  `operate_uid` int(11) DEFAULT NULL COMMENT 'Operator UID',
+  `operate_type` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Operation Type',
   `scope` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Scope',
-  `link_id` int(11) DEFAULT NULL COMMENT 'Resource name',
-  `origin` json DEFAULT NULL COMMENT 'Original data',
-  `current` json DEFAULT NULL COMMENT 'Current data',
-  `extra` json DEFAULT NULL COMMENT 'Permission name',
+  `link_id` int(11) DEFAULT NULL COMMENT 'Resource Name',
+  `origin` json DEFAULT NULL COMMENT 'Original Data',
+  `current` json DEFAULT NULL COMMENT 'Current Data',
+  `extra` json DEFAULT NULL COMMENT 'Permission Name',
   `source` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Source',
   PRIMARY KEY (`id`),
   KEY `ix_acl_audit_resource_logs_operate_uid` (`operate_uid`),
@@ -119,6 +119,7 @@ CREATE TABLE `acl_audit_resource_logs` (
   KEY `ix_acl_audit_resource_logs_app_id` (`app_id`),
   KEY `ix_acl_audit_resource_logs_link_id` (`link_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,7 +128,98 @@ CREATE TABLE `acl_audit_resource_logs` (
 
 LOCK TABLES `acl_audit_resource_logs` WRITE;
 /*!40000 ALTER TABLE `acl_audit_resource_logs` DISABLE KEYS */;
-INSERT INTO `acl_audit_resource_logs` VALUES (NULL,0,'2023-07-11 16:50:51',NULL,1,2,1,'create','resource',10,'{}','{\"id\": 10, \"uid\": 1, \"name\": \"switch\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2023-07-11 16:50:51\", \"deleted_at\": null, \"updated_at\": null, \"resource_type_id\": 1}','{}','acl'),(NULL,0,'2023-07-11 16:51:17',NULL,2,2,1,'create','resource',11,'{}','{\"id\": 11, \"uid\": 1, \"name\": \"router\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2023-07-11 16:51:17\", \"deleted_at\": null, \"updated_at\": null, \"resource_type_id\": 1}','{}','acl'),(NULL,0,'2023-07-11 16:51:23',NULL,3,2,1,'create','resource',12,'{}','{\"id\": 12, \"uid\": 1, \"name\": \"firewall\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2023-07-11 16:51:23\", \"deleted_at\": null, \"updated_at\": null, \"resource_type_id\": 1}','{}','acl'),(NULL,0,'2023-07-11 16:51:29',NULL,4,2,1,'create','resource',13,'{}','{\"id\": 13, \"uid\": 1, \"name\": \"load_balance\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2023-07-11 16:51:29\", \"deleted_at\": null, \"updated_at\": null, \"resource_type_id\": 1}','{}','acl'),(NULL,0,'2023-07-11 16:51:34',NULL,5,2,1,'create','resource',14,'{}','{\"id\": 14, \"uid\": 1, \"name\": \"mysql\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2023-07-11 16:51:34\", \"deleted_at\": null, \"updated_at\": null, \"resource_type_id\": 1}','{}','acl'),(NULL,0,'2023-07-11 16:51:39',NULL,6,2,1,'create','resource',15,'{}','{\"id\": 15, \"uid\": 1, \"name\": \"postgresql\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2023-07-11 16:51:39\", \"deleted_at\": null, \"updated_at\": null, \"resource_type_id\": 1}','{}','acl'),(NULL,0,'2023-07-11 16:51:50',NULL,7,2,1,'create','resource',16,'{}','{\"id\": 16, \"uid\": 1, \"name\": \"mongodb\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2023-07-11 16:51:50\", \"deleted_at\": null, \"updated_at\": null, \"resource_type_id\": 1}','{}','acl'),(NULL,0,'2023-07-11 16:51:56',NULL,8,2,1,'create','resource',17,'{}','{\"id\": 17, \"uid\": 1, \"name\": \"mssql\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2023-07-11 16:51:56\", \"deleted_at\": null, \"updated_at\": null, \"resource_type_id\": 1}','{}','acl'),(NULL,0,'2023-07-11 16:52:01',NULL,9,2,1,'create','resource',18,'{}','{\"id\": 18, \"uid\": 1, \"name\": \"nginx\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2023-07-11 16:52:01\", \"deleted_at\": null, \"updated_at\": null, \"resource_type_id\": 1}','{}','acl'),(NULL,0,'2023-07-11 16:52:07',NULL,10,2,1,'create','resource',19,'{}','{\"id\": 19, \"uid\": 1, \"name\": \"apache\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2023-07-11 16:52:07\", \"deleted_at\": null, \"updated_at\": null, \"resource_type_id\": 1}','{}','acl'),(NULL,0,'2023-07-11 16:52:12',NULL,11,2,1,'create','resource',20,'{}','{\"id\": 20, \"uid\": 1, \"name\": \"tomcat\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2023-07-11 16:52:12\", \"deleted_at\": null, \"updated_at\": null, \"resource_type_id\": 1}','{}','acl'),(NULL,0,'2023-07-11 16:54:04',NULL,12,2,1,'update','resource_type',1,'{\"id\": 1, \"name\": \"CIType\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2021-11-23 19:52:22\", \"deleted_at\": null, \"updated_at\": \"2022-10-28 17:55:15\", \"description\": \"数据模型\"}','{\"id\": 1, \"name\": \"CIType\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2021-11-23 19:52:22\", \"deleted_at\": null, \"updated_at\": \"2022-10-28 17:55:15\", \"description\": \"数据模型\"}','{\"permission_ids\": {\"origin\": [], \"current\": [1, 2, 3, 4, 5, 6]}}','acl'),(NULL,0,'2023-07-11 16:54:23',NULL,13,2,1,'update','resource_type',2,'{\"id\": 2, \"name\": \"RelationView\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2021-11-23 19:52:56\", \"deleted_at\": null, \"updated_at\": null, \"description\": \"关系视图\"}','{\"id\": 2, \"name\": \"RelationView\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2021-11-23 19:52:56\", \"deleted_at\": null, \"updated_at\": null, \"description\": \"关系视图\"}','{\"permission_ids\": {\"origin\": [], \"current\": [7, 8, 9, 10, 11]}}','acl'),(NULL,0,'2023-07-11 16:54:36',NULL,14,2,1,'update','resource_type',10,'{\"id\": 10, \"name\": \"CITypeRelation\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2022-10-17 16:50:42\", \"deleted_at\": null, \"updated_at\": \"2022-10-28 17:55:29\", \"description\": \"模型关联\"}','{\"id\": 10, \"name\": \"CITypeRelation\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2022-10-17 16:50:42\", \"deleted_at\": null, \"updated_at\": \"2022-10-28 17:55:29\", \"description\": \"模型关联\"}','{\"permission_ids\": {\"origin\": [], \"current\": [12, 13, 14]}}','acl'),(NULL,0,'2023-07-11 16:54:43',NULL,15,2,1,'update','resource_type',21,'{\"id\": 21, \"name\": \"CIFilter\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2023-05-23 15:17:22\", \"deleted_at\": null, \"updated_at\": null, \"description\": \"\"}','{\"id\": 21, \"name\": \"CIFilter\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2023-05-23 15:17:22\", \"deleted_at\": null, \"updated_at\": null, \"description\": \"\"}','{\"permission_ids\": {\"origin\": [], \"current\": [15]}}','acl'),(NULL,0,'2023-07-11 16:57:17',NULL,16,2,1,'create','resource',21,'{}','{\"id\": 21, \"uid\": 1, \"name\": \"bu -> product\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2023-07-11 16:57:17\", \"deleted_at\": null, \"updated_at\": null, \"resource_type_id\": 10}','{}','acl'),(NULL,0,'2023-07-11 16:58:34',NULL,17,2,1,'create','resource',22,'{}','{\"id\": 22, \"uid\": 1, \"name\": \"product -> project\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2023-07-11 16:58:34\", \"deleted_at\": null, \"updated_at\": null, \"resource_type_id\": 10}','{}','acl'),(NULL,0,'2023-07-11 16:59:34',NULL,18,2,1,'create','resource',23,'{}','{\"id\": 23, \"uid\": 1, \"name\": \"project -> server\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2023-07-11 16:59:34\", \"deleted_at\": null, \"updated_at\": null, \"resource_type_id\": 10}','{}','acl'),(NULL,0,'2023-07-11 16:59:43',NULL,19,2,1,'create','resource',24,'{}','{\"id\": 24, \"uid\": 1, \"name\": \"project -> vserver\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2023-07-11 16:59:43\", \"deleted_at\": null, \"updated_at\": null, \"resource_type_id\": 10}','{}','acl'),(NULL,0,'2023-07-11 16:59:55',NULL,20,2,1,'create','resource',25,'{}','{\"id\": 25, \"uid\": 1, \"name\": \"project -> docker\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2023-07-11 16:59:55\", \"deleted_at\": null, \"updated_at\": null, \"resource_type_id\": 10}','{}','acl'),(NULL,0,'2023-07-11 17:00:16',NULL,21,2,1,'create','resource',26,'{}','{\"id\": 26, \"uid\": 1, \"name\": \"server -> RAM\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2023-07-11 17:00:16\", \"deleted_at\": null, \"updated_at\": null, \"resource_type_id\": 10}','{}','acl'),(NULL,0,'2023-07-11 17:00:25',NULL,22,2,1,'create','resource',27,'{}','{\"id\": 27, \"uid\": 1, \"name\": \"server -> harddisk\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2023-07-11 17:00:25\", \"deleted_at\": null, \"updated_at\": null, \"resource_type_id\": 10}','{}','acl'),(NULL,0,'2023-07-11 17:00:33',NULL,23,2,1,'create','resource',28,'{}','{\"id\": 28, \"uid\": 1, \"name\": \"server -> NIC\", \"app_id\": 2, \"deleted\": false, \"created_at\": \"2023-07-11 17:00:33\", \"deleted_at\": null, \"updated_at\": null, \"resource_type_id\": 10}','{}','acl');
+INSERT INTO `acl_audit_resource_logs` VALUES 
+(NULL, 0, '2023-07-11 16:50:51', NULL, 1, 2, 1, 'create', 'resource', 10, '{}', 
+  '{"id": 10, "uid": 1, "name": "switch", "app_id": 2, "deleted": false, "created_at": "2023-07-11 16:50:51", "deleted_at": null, "updated_at": null, "resource_type_id": 1}',
+  '{}', 'acl'),
+(NULL, 0, '2023-07-11 16:51:17', NULL, 2, 2, 1, 'create', 'resource', 11, '{}', 
+  '{"id": 11, "uid": 1, "name": "router", "app_id": 2, "deleted": false, "created_at": "2023-07-11 16:51:17", "deleted_at": null, "updated_at": null, "resource_type_id": 1}',
+  '{}', 'acl'),
+(NULL, 0, '2023-07-11 16:51:23', NULL, 3, 2, 1, 'create', 'resource', 12, '{}', 
+  '{"id": 12, "uid": 1, "name": "firewall", "app_id": 2, "deleted": false, "created_at": "2023-07-11 16:51:23", "deleted_at": null, "updated_at": null, "resource_type_id": 1}',
+  '{}', 'acl'),
+(NULL, 0, '2023-07-11 16:51:29', NULL, 4, 2, 1, 'create', 'resource', 13, '{}', 
+  '{"id": 13, "uid": 1, "name": "load_balance", "app_id": 2, "deleted": false, "created_at": "2023-07-11 16:51:29", "deleted_at": null, "updated_at": null, "resource_type_id": 1}',
+  '{}', 'acl'),
+(NULL, 0, '2023-07-11 16:51:34', NULL, 5, 2, 1, 'create', 'resource', 14, '{}', 
+  '{"id": 14, "uid": 1, "name": "mysql", "app_id": 2, "deleted": false, "created_at": "2023-07-11 16:51:34", "deleted_at": null, "updated_at": null, "resource_type_id": 1}',
+  '{}', 'acl'),
+(NULL, 0, '2023-07-11 16:51:39', NULL, 6, 2, 1, 'create', 'resource', 15, '{}', 
+  '{"id": 15, "uid": 1, "name": "postgresql", "app_id": 2, "deleted": false, "created_at": "2023-07-11 16:51:39", "deleted_at": null, "updated_at": null, "resource_type_id": 1}',
+  '{}', 'acl'),
+(NULL, 0, '2023-07-11 16:51:50', NULL, 7, 2, 1, 'create', 'resource', 16, '{}', 
+  '{"id": 16, "uid": 1, "name": "mongodb", "app_id": 2, "deleted": false, "created_at": "2023-07-11 16:51:50", "deleted_at": null, "updated_at": null, "resource_type_id": 1}',
+  '{}', 'acl'),
+(NULL, 0, '2023-07-11 16:51:56', NULL, 8, 2, 1, 'create', 'resource', 17, '{}', 
+  '{"id": 17, "uid": 1, "name": "mssql", "app_id": 2, "deleted": false, "created_at": "2023-07-11 16:51:56", "deleted_at": null, "updated_at": null, "resource_type_id": 1}',
+  '{}', 'acl'),
+(NULL, 0, '2023-07-11 16:52:01', NULL, 9, 2, 1, 'create', 'resource', 18, '{}', 
+  '{"id": 18, "uid": 1, "name": "nginx", "app_id": 2, "deleted": false, "created_at": "2023-07-11 16:52:01", "deleted_at": null, "updated_at": null, "resource_type_id": 1}',
+  '{}', 'acl'),
+(NULL, 0, '2023-07-11 16:52:07', NULL, 10, 2, 1, 'create', 'resource', 19, '{}', 
+  '{"id": 19, "uid": 1, "name": "apache", "app_id": 2, "deleted": false, "created_at": "2023-07-11 16:52:07", "deleted_at": null, "updated_at": null, "resource_type_id": 1}',
+  '{}', 'acl'),
+(NULL, 0, '2023-07-11 16:52:12', NULL, 11, 2, 1, 'create', 'resource', 20, '{}', 
+  '{"id": 20, "uid": 1, "name": "tomcat", "app_id": 2, "deleted": false, "created_at": "2023-07-11 16:52:12", "deleted_at": null, "updated_at": null, "resource_type_id": 1}',
+  '{}', 'acl'),
+(NULL, 0, '2023-07-11 16:54:04', NULL, 12, 2, 1, 'update', 'resource_type', 1, 
+  '{"id": 1, "name": "CIType", "app_id": 2, "deleted": false, "created_at": "2021-11-23 19:52:22", "deleted_at": null, "updated_at": "2022-10-28 17:55:15", "description": "Data Model"}',
+  '{"id": 1, "name": "CIType", "app_id": 2, "deleted": false, "created_at": "2021-11-23 19:52:22", "deleted_at": null, "updated_at": "2022-10-28 17:55:15", "description": "Data Model"}',
+  '{"permission_ids": {"origin": [], "current": [1, 2, 3, 4, 5, 6]}}', 'acl'),
+
+(NULL, 0, '2023-07-11 16:54:23', NULL, 13, 2, 1, 'update', 'resource_type', 2, 
+  '{"id": 2, "name": "RelationView", "app_id": 2, "deleted": false, "created_at": "2021-11-23 19:52:56", "deleted_at": null, "updated_at": null, "description": "Relationship View"}',
+  '{"id": 2, "name": "RelationView", "app_id": 2, "deleted": false, "created_at": "2021-11-23 19:52:56", "deleted_at": null, "updated_at": null, "description": "Relationship View"}',
+  '{"permission_ids": {"origin": [], "current": [7, 8, 9, 10, 11]}}', 'acl'),
+
+(NULL, 0, '2023-07-11 16:54:36', NULL, 14, 2, 1, 'update', 'resource_type', 10, 
+  '{"id": 10, "name": "CITypeRelation", "app_id": 2, "deleted": false, "created_at": "2022-10-17 16:50:42", "deleted_at": null, "updated_at": "2022-10-28 17:55:29", "description": "Model Association"}',
+  '{"id": 10, "name": "CITypeRelation", "app_id": 2, "deleted": false, "created_at": "2022-10-17 16:50:42", "deleted_at": null, "updated_at": "2022-10-28 17:55:29", "description": "Model Association"}',
+  '{"permission_ids": {"origin": [], "current": [12, 13, 14]}}', 'acl'),
+
+(NULL, 0, '2023-07-11 16:54:43', NULL, 15, 2, 1, 'update', 'resource_type', 21, 
+  '{"id": 21, "name": "CIFilter", "app_id": 2, "deleted": false, "created_at": "2023-05-23 15:17:22", "deleted_at": null, "updated_at": null, "description": ""}',
+  '{"id": 21, "name": "CIFilter", "app_id": 2, "deleted": false, "created_at": "2023-05-23 15:17:22", "deleted_at": null, "updated_at": null, "description": ""}',
+  '{"permission_ids": {"origin": [], "current": [15]}}', 'acl'),
+
+(NULL, 0, '2023-07-11 16:57:17', NULL, 16, 2, 1, 'create', 'resource', 21, 
+  '{}',
+  '{"id": 21, "uid": 1, "name": "bu -> product", "app_id": 2, "deleted": false, "created_at": "2023-07-11 16:57:17", "deleted_at": null, "updated_at": null, "resource_type_id": 10}',
+  '{}', 'acl'),
+
+(NULL, 0, '2023-07-11 16:58:34', NULL, 17, 2, 1, 'create', 'resource', 22, 
+  '{}',
+  '{"id": 22, "uid": 1, "name": "product -> project", "app_id": 2, "deleted": false, "created_at": "2023-07-11 16:58:34", "deleted_at": null, "updated_at": null, "resource_type_id": 10}',
+  '{}', 'acl'),
+
+(NULL, 0, '2023-07-11 16:59:34', NULL, 18, 2, 1, 'create', 'resource', 23, 
+  '{}',
+  '{"id": 23, "uid": 1, "name": "project -> server", "app_id": 2, "deleted": false, "created_at": "2023-07-11 16:59:34", "deleted_at": null, "updated_at": null, "resource_type_id": 10}',
+  '{}', 'acl'),
+
+(NULL, 0, '2023-07-11 16:59:43', NULL, 19, 2, 1, 'create', 'resource', 24, 
+  '{}',
+  '{"id": 24, "uid": 1, "name": "project -> vserver", "app_id": 2, "deleted": false, "created_at": "2023-07-11 16:59:43", "deleted_at": null, "updated_at": null, "resource_type_id": 10}',
+  '{}', 'acl'),
+(NULL, 0, '2023-07-11 16:59:55', NULL, 20, 2, 1, 'create', 'resource', 25, 
+  '{}',
+  '{"id": 25, "uid": 1, "name": "project -> docker", "app_id": 2, "deleted": false, "created_at": "2023-07-11 16:59:55", "deleted_at": null, "updated_at": null, "resource_type_id": 10}',
+  '{}', 'acl'),
+
+(NULL, 0, '2023-07-11 17:00:16', NULL, 21, 2, 1, 'create', 'resource', 26, 
+  '{}',
+  '{"id": 26, "uid": 1, "name": "server -> RAM", "app_id": 2, "deleted": false, "created_at": "2023-07-11 17:00:16", "deleted_at": null, "updated_at": null, "resource_type_id": 10}',
+  '{}', 'acl'),
+
+(NULL, 0, '2023-07-11 17:00:25', NULL, 22, 2, 1, 'create', 'resource', 27, 
+  '{}',
+  '{"id": 27, "uid": 1, "name": "server -> harddisk", "app_id": 2, "deleted": false, "created_at": "2023-07-11 17:00:25", "deleted_at": null, "updated_at": null, "resource_type_id": 10}',
+  '{}', 'acl'),
+
+(NULL, 0, '2023-07-11 17:00:33', NULL, 23, 2, 1, 'create', 'resource', 28, 
+  '{}',
+  '{"id": 28, "uid": 1, "name": "server -> NIC", "app_id": 2, "deleted": false, "created_at": "2023-07-11 17:00:33", "deleted_at": null, "updated_at": null, "resource_type_id": 10}',
+  '{}', 'acl');
 /*!40000 ALTER TABLE `acl_audit_resource_logs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,13 +237,13 @@ CREATE TABLE `acl_audit_role_logs` (
   `updated_at` datetime DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `app_id` int(11) DEFAULT NULL,
-  `operate_uid` int(11) DEFAULT NULL COMMENT 'Operator uid',
-  `operate_type` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Operation type',
+  `operate_uid` int(11) DEFAULT NULL COMMENT 'Operator UID',
+  `operate_type` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Operation Type',
   `scope` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Scope',
-  `link_id` int(11) DEFAULT NULL COMMENT 'Resource id',
-  `origin` json DEFAULT NULL COMMENT 'Original data',
-  `current` json DEFAULT NULL COMMENT 'Current data',
-  `extra` json DEFAULT NULL COMMENT 'Other content',
+  `link_id` int(11) DEFAULT NULL COMMENT 'Resource ID',
+  `origin` json DEFAULT NULL COMMENT 'Original Data',
+  `current` json DEFAULT NULL COMMENT 'Current Data',
+  `extra` json DEFAULT NULL COMMENT 'Additional Content',
   `source` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Source',
   PRIMARY KEY (`id`),
   KEY `ix_acl_audit_role_logs_app_id` (`app_id`),
@@ -187,11 +279,11 @@ CREATE TABLE `acl_audit_trigger_logs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `app_id` int(11) DEFAULT NULL,
   `trigger_id` int(11) DEFAULT NULL COMMENT 'Trigger',
-  `operate_uid` int(11) DEFAULT NULL COMMENT 'Operator uid',
-  `operate_type` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Operation type',
-  `origin` json DEFAULT NULL COMMENT 'Original data',
-  `current` json DEFAULT NULL COMMENT 'Current data',
-  `extra` json DEFAULT NULL COMMENT 'Permission name',
+  `operate_uid` int(11) DEFAULT NULL COMMENT 'Operator UID',
+  `operate_type` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Operation Type',
+  `origin` json DEFAULT NULL COMMENT 'Original Data',
+  `current` json DEFAULT NULL COMMENT 'Current Data',
+  `extra` json DEFAULT NULL COMMENT 'Permission Name',
   `source` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Source',
   PRIMARY KEY (`id`),
   KEY `ix_acl_audit_trigger_logs_operate_type` (`operate_type`),
@@ -376,11 +468,12 @@ CREATE TABLE `acl_resource_types` (
 LOCK TABLES `acl_resource_types` WRITE;
 /*!40000 ALTER TABLE `acl_resource_types` DISABLE KEYS */;
 INSERT INTO `acl_resource_types` VALUES 
-(NULL,0,'2021-11-23 19:52:22','2022-10-28 17:55:15',1,'CIType','Data model',2),
-(NULL,0,'2021-11-23 19:52:56',NULL,2,'RelationView','Relationship view',2),
-(NULL,0,'2022-10-17 16:50:42','2022-10-28 17:55:29',10,'CITypeRelation','Model association',2),
-(NULL,0,'2023-05-23 15:17:22',NULL,21,'CIFilter','',2),
-(NULL,0,'2023-06-01 14:28:20',NULL,23,'Operation permission','',9);
+(NULL, 0, '2021-11-23 19:52:22', '2022-10-28 17:55:15', 1, 'CIType', 'Data Model', 2),
+(NULL, 0, '2021-11-23 19:52:56', NULL, 2, 'RelationView', 'Relationship View', 2),
+(NULL, 0, '2022-10-17 16:50:42', '2022-10-28 17:55:29', 10, 'CITypeRelation', 'Model Association', 2),
+(NULL, 0, '2023-05-23 15:17:22', NULL, 21, 'CIFilter', '', 2),
+(NULL, 0, '2023-06-01 14:28:20', NULL, 23, 'Permission Operation', '', 9);
+
 /*!40000 ALTER TABLE `acl_resource_types` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -696,17 +789,18 @@ CREATE TABLE `c_ad_rules` (
 LOCK TABLES `c_ad_rules` WRITE;
 /*!40000 ALTER TABLE `c_ad_rules` DISABLE KEYS */;
 INSERT INTO `c_ad_rules` VALUES 
-(NULL,0,'2023-07-11 16:57:01',NULL,1,'Alibaba Cloud','http',1,NULL,'{\"icon\": {\"name\": \"caise-aliyun\"}}',NULL,0,NULL,NULL),
-(NULL,0,'2023-07-11 16:57:01',NULL,2,'Tencent Cloud','http',1,NULL,'{\"icon\": {\"name\": \"caise-tengxunyun\"}}',NULL,0,NULL,NULL),
-(NULL,0,'2023-07-11 16:57:01',NULL,3,'Huawei Cloud','http',1,NULL,'{\"icon\": {\"name\": \"caise-huaweiyun\"}}',NULL,0,NULL,NULL),
-(NULL,0,'2023-07-11 16:57:01',NULL,4,'AWS','http',1,NULL,'{\"icon\": {\"name\": \"caise-aws\"}}',NULL,0,NULL,NULL),
-(NULL,0,'2023-07-11 16:57:01',NULL,5,'Switch','snmp',1,NULL,'{\"icon\": {\"name\": \"caise-jiaohuanji\"}}',NULL,0,NULL,NULL),
-(NULL,0,'2023-07-11 16:57:01',NULL,6,'Router','snmp',1,NULL,'{\"icon\": {\"name\": \"caise-luyouqi\"}}',NULL,0,NULL,NULL),
-(NULL,0,'2023-07-11 16:57:01',NULL,7,'Firewall','snmp',1,NULL,'{\"icon\": {\"name\": \"caise-fanghuoqiang\"}}',NULL,0,NULL,NULL),
-(NULL,0,'2023-07-11 16:57:01',NULL,8,'Printer','snmp',1,NULL,'{\"icon\": {\"name\": \"caise-dayinji\"}}',NULL,0,NULL,NULL),
-(NULL,0,'2023-07-11 17:10:11',NULL,9,'Physical Machine','agent',1,NULL,'{\"icon\": {\"name\": \"caise-wuliji\", \"color\": \"\"}}','[]',0,NULL,NULL),
-(NULL,0,'2023-07-11 17:10:22',NULL,10,'Virtual Machine','agent',1,NULL,'{\"icon\": {\"name\": \"caise-xuniji\", \"color\": \"\"}}','[]',0,NULL,NULL),
-(NULL,0,'2023-07-11 17:10:30',NULL,11,'Network Card','agent',1,NULL,'{\"icon\": {\"name\": \"caise-wangka\", \"color\": \"\"}}','[]',0,NULL,NULL);
+(NULL, 0, '2023-07-11 16:57:01', NULL, 1, 'Alibaba Cloud', 'http', 1, NULL, '{"icon": {"name": "caise-aliyun"}}', NULL, 0, NULL, NULL),
+(NULL, 0, '2023-07-11 16:57:01', NULL, 2, 'Tencent Cloud', 'http', 1, NULL, '{"icon": {"name": "caise-tengxunyun"}}', NULL, 0, NULL, NULL),
+(NULL, 0, '2023-07-11 16:57:01', NULL, 3, 'Huawei Cloud', 'http', 1, NULL, '{"icon": {"name": "caise-huaweiyun"}}', NULL, 0, NULL, NULL),
+(NULL, 0, '2023-07-11 16:57:01', NULL, 4, 'AWS', 'http', 1, NULL, '{"icon": {"name": "caise-aws"}}', NULL, 0, NULL, NULL),
+(NULL, 0, '2023-07-11 16:57:01', NULL, 5, 'Switch', 'snmp', 1, NULL, '{"icon": {"name": "caise-jiaohuanji"}}', NULL, 0, NULL, NULL),
+(NULL, 0, '2023-07-11 16:57:01', NULL, 6, 'Router', 'snmp', 1, NULL, '{"icon": {"name": "caise-luyouqi"}}', NULL, 0, NULL, NULL),
+(NULL, 0, '2023-07-11 16:57:01', NULL, 7, 'Firewall', 'snmp', 1, NULL, '{"icon": {"name": "caise-fanghuoqiang"}}', NULL, 0, NULL, NULL),
+(NULL, 0, '2023-07-11 16:57:01', NULL, 8, 'Printer', 'snmp', 1, NULL, '{"icon": {"name": "caise-dayinji"}}', NULL, 0, NULL, NULL),
+(NULL, 0, '2023-07-11 17:10:11', NULL, 9, 'Physical Machine', 'agent', 1, NULL, '{"icon": {"name": "caise-wuliji", "color": ""}}', '[]', 0, NULL, NULL),
+(NULL, 0, '2023-07-11 17:10:22', NULL, 10, 'Virtual Machine', 'agent', 1, NULL, '{"icon": {"name": "caise-xuniji", "color": ""}}', '[]', 0, NULL, NULL),
+(NULL, 0, '2023-07-11 17:10:30', NULL, 11, 'Network Card', 'agent', 1, NULL, '{"icon": {"name": "caise-wangka", "color": ""}}', '[]', 0, NULL, NULL);
+
 /*!40000 ALTER TABLE `c_ad_rules` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -744,7 +838,15 @@ CREATE TABLE `c_attribute_histories` (
 
 LOCK TABLES `c_attribute_histories` WRITE;
 /*!40000 ALTER TABLE `c_attribute_histories` DISABLE KEYS */;
-INSERT INTO `c_attribute_histories` VALUES (NULL,0,'2023-07-11 17:49:51',NULL,1,'0',1,1,1,NULL,'事业部1'),(NULL,0,'2023-07-11 17:50:30',NULL,2,'0',2,2,2,NULL,'产品1'),(NULL,0,'2023-07-11 17:50:36',NULL,3,'0',3,3,3,NULL,'应用1'),(NULL,0,'2023-07-11 17:51:01',NULL,4,'0',4,4,23,NULL,'物理机1'),(NULL,0,'2023-07-11 17:51:01',NULL,5,'0',4,4,25,NULL,'192.168.2.2'),(NULL,0,'2023-07-11 17:51:01',NULL,6,'0',4,4,4,NULL,'xxxxxxx'),(NULL,0,'2023-07-11 17:51:01',NULL,7,'0',4,4,37,NULL,'2');
+INSERT INTO `c_attribute_histories` VALUES 
+(NULL, 0, '2023-07-11 17:49:51', NULL, 1, '0', 1, 1, 1, NULL, 'Business Unit 1'),
+(NULL, 0, '2023-07-11 17:50:30', NULL, 2, '0', 2, 2, 2, NULL, 'Product 1'),
+(NULL, 0, '2023-07-11 17:50:36', NULL, 3, '0', 3, 3, 3, NULL, 'Application 1'),
+(NULL, 0, '2023-07-11 17:51:01', NULL, 4, '0', 4, 4, 23, NULL, 'Physical Machine 1'),
+(NULL, 0, '2023-07-11 17:51:01', NULL, 5, '0', 4, 4, 25, NULL, '192.168.2.2'),
+(NULL, 0, '2023-07-11 17:51:01', NULL, 6, '0', 4, 4, 4, NULL, 'xxxxxxx'),
+(NULL, 0, '2023-07-11 17:51:01', NULL, 7, '0', 4, 4, 37, NULL, '2');
+
 /*!40000 ALTER TABLE `c_attribute_histories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -791,106 +893,84 @@ CREATE TABLE `c_attributes` (
 LOCK TABLES `c_attributes` WRITE;
 /*!40000 ALTER TABLE `c_attributes` DISABLE KEYS */;
 INSERT INTO `c_attributes` VALUES 
-('2022-12-14 19:25:41',0,'2021-11-23 19:50:29','2022-12-14 19:25:41',1,'bu_name','Division','2',0,0,1,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:41',0,'2021-11-23 19:56:36','2022-12-14 19:25:41',2,'product_name','Product Name','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:41',0,'2021-11-23 19:58:08','2022-12-14 19:25:41',3,'project_name','Application Name','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:41',0,'2021-11-23 20:06:49','2022-12-14 19:25:41',4,'sn','Server Serial Number','2',0,0,1,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-23 20:08:47','2023-02-07 13:34:19',5,'uuid','UUID','2',0,0,1,1,NULL,0,0,NULL,'{}',0,NULL,NULL,0,'{\"default\": null}'),
-('2022-12-14 19:25:42',0,'2021-11-23 20:36:46','2022-12-14 19:25:42',6,'ram_sn','Memory Serial Number','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-23 21:38:12','2022-12-14 19:25:42',7,'hd_sn','Hard Disk Serial Number','2',0,0,1,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 09:42:50','2022-12-14 19:25:42',8,'nic_mac','Network Card MAC','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 09:45:05','2022-12-14 19:25:42',9,'instance_id','Instance ID','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 10:11:38','2022-12-14 19:25:41',10,'bu_owner','BU Person in Charge','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 10:12:25','2022-12-14 19:25:41',11,'bu_owner_mobile','BU Person in Charge Phone','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 10:12:56','2022-12-14 19:25:41',12,'bu_owner_email','BU Person in Charge Email','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 10:19:39','2022-12-14 19:25:41',13,'product_owner','Product Person in Charge','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 10:20:02','2022-12-14 19:25:41',14,'product_owner_mobile','Person in Charge Phone','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 10:20:23','2022-12-14 19:25:41',15,'product_owner_email','Person in Charge Email Group','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 10:20:51','2022-12-14 19:25:41',16,'product_op_duty','Product Line Application Operation and Maintenance','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 10:22:57','2022-12-14 19:25:41',17,'project_type','Application Type','2',1,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 10:23:40','2022-12-14 19:25:41',18,'project_status','Application Status','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 10:24:01','2022-12-14 19:25:41',19,'project_description','Application Description','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 10:24:35','2022-12-14 19:25:42',20,'rd_duty','Development Person in Charge','2',0,1,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 10:25:01','2022-12-14 19:25:41',21,'qa_duty','QA Person in Charge','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:44',0,'2021-11-24 10:25:25','2023-02-07 13:56:47',22,'op_duty','Operation and Maintenance Person in Charge','2',0,1,0,1,NULL,0,0,NULL,'{}',0,NULL,NULL,1,'{\"default\": null}'),
-('2022-12-14 19:25:41',0,'2021-11-24 10:40:03','2023-03-03 17:50:36',23,'server_name','Server Name','2',0,0,0,0,NULL,0,0,NULL,'{}',0,NULL,NULL,0,'{\"default\": \"10\"}'),
-('2022-12-14 19:25:42',0,'2021-11-24 10:40:56','2022-12-14 19:25:42',24,'oneagent_id','AgentID','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 10:41:47','2023-03-03 17:53:18',25,'private_ip','Internal Network IP','2',0,0,0,1,NULL,0,0,NULL,'{\"fontOptions\": {\"color\": \"#606266\", \"fontStyle\": \"initial\", \"fontWeight\": \"bold\", \"textDecoration\": \"initial\"}}',0,NULL,NULL,0,'{\"default\": null}'),
-('2022-12-14 19:25:42',0,'2021-11-24 10:42:29','2022-12-14 19:25:42',26,'os_version','Operating System Version','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 10:43:06','2022-12-14 19:25:41',27,'ctc_ip','Telecom IP','2',0,0,1,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 10:49:30','2022-12-14 19:25:41',28,'cnc_ip','Unicom IP','2',0,0,1,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 10:49:55','2022-12-14 19:25:41',29,'cmc_ip','Mobile IP','2',0,0,1,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 10:50:19','2022-12-14 19:25:42',30,'kernel_version','Kernel Version','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 10:51:20','2022-12-14 19:25:42',31,'ssh_port','SSH Port','0',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 10:59:07','2022-12-14 19:25:42',32,'bu','BU','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 10:59:57','2022-12-14 19:25:42',33,'perm','perm','6',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:43',0,'2021-11-24 11:01:59','2022-12-14 19:25:43',34,'status','Status','2',1,0,0,1,NULL,0,0,NULL,'{}',0,NULL,NULL,0,'{\"default\": null}'),
-('2022-12-14 19:25:42',0,'2021-11-24 11:03:04','2022-12-14 19:25:42',35,'env','Environment','2',1,0,0,1,NULL,0,0,NULL,'{}',0,NULL,NULL,0,'{\"default\": null}'),
-('2022-12-14 19:25:42',0,'2021-11-24 11:06:00','2022-12-14 19:25:42',36,'cpu','CPU Model','2',0,0,0,1,NULL,0,0,NULL,'{}',0,NULL,NULL,0,'{\"default\": null}'),
-('2022-12-14 19:25:42',0,'2021-11-24 11:06:59','2022-12-14 19:25:42',37,'cpu_count','CPU Count','0',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 11:09:18','2022-12-14 19:25:41',38,'logic_cpu_count','Logical CPU Count','0',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:12:24','2022-12-14 19:25:42',39,'ram_size','Memory Size','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:12:48','2022-12-14 19:25:42',40,'ram','Memory Information','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:13:11','2022-12-14 19:25:42',41,'vnc_port','VNC Port','0',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 11:13:37','2022-12-14 19:25:41',42,'manufacturer','Server Manufacturer','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 11:13:51','2022-12-14 19:25:41',43,'device_spec','Server Model','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 11:14:07','2022-12-14 19:25:41',44,'raid','RAID','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 11:14:31','2022-12-14 19:25:41',45,'ilo_ip','ilo Card IP','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 11:14:57','2022-12-14 19:25:41',46,'ilo_mac','ilo Card MAC Address','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 10:41:47','2023-03-03 17:53:18',25,'private_ip','Internal Network IP','2',0,0,0,1,NULL,0,0,NULL,'{\"fontOptions\": {\"color\": \"#606266\", \"fontStyle\": \"initial\", \"fontWeight\": \"bold\", \"textDecoration\": \"initial\"}}',0,NULL,NULL,0,'{\"default\": null}'),
-('2022-12-14 19:25:42',0,'2021-11-24 10:42:29','2022-12-14 19:25:42',26,'os_version','Operating System Version','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 10:43:06','2022-12-14 19:25:41',27,'ctc_ip','Telecom IP','2',0,0,1,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 10:49:30','2022-12-14 19:25:41',28,'cnc_ip','Unicom IP','2',0,0,1,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 10:49:55','2022-12-14 19:25:41',29,'cmc_ip','Mobile IP','2',0,0,1,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 10:50:19','2022-12-14 19:25:42',30,'kernel_version','Kernel Version','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 10:51:20','2022-12-14 19:25:42',31,'ssh_port','SSH Port','0',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 10:59:07','2022-12-14 19:25:42',32,'bu','BU','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 10:59:57','2022-12-14 19:25:42',33,'perm','perm','6',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:43',0,'2021-11-24 11:01:59','2022-12-14 19:25:43',34,'status','Status','2',1,0,0,1,NULL,0,0,NULL,'{}',0,NULL,NULL,0,'{\"default\": null}'),
-('2022-12-14 19:25:42',0,'2021-11-24 11:03:04','2022-12-14 19:25:42',35,'env','Environment','2',1,0,0,1,NULL,0,0,NULL,'{}',0,NULL,NULL,0,'{\"default\": null}'),
-('2022-12-14 19:25:42',0,'2021-11-24 11:06:00','2022-12-14 19:25:42',36,'cpu','CPU Model','2',0,0,0,1,NULL,0,0,NULL,'{}',0,NULL,NULL,0,'{\"default\": null}'),
-('2022-12-14 19:25:42',0,'2021-11-24 11:06:59','2022-12-14 19:25:42',37,'cpu_count','CPU Count','0',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 11:09:18','2022-12-14 19:25:41',38,'logic_cpu_count','Logical CPU Count','0',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:12:24','2022-12-14 19:25:42',39,'ram_size','Memory Size','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:12:48','2022-12-14 19:25:42',40,'ram','Memory Information','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:13:11','2022-12-14 19:25:42',41,'vnc_port','VNC Port','0',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 11:13:37','2022-12-14 19:25:41',42,'manufacturer','Server Manufacturer','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 11:13:51','2022-12-14 19:25:41',43,'device_spec','Server Model','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 11:14:07','2022-12-14 19:25:41',44,'raid','RAID','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 11:14:31','2022-12-14 19:25:41',45,'ilo_ip','ilo Card IP','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:41',0,'2021-11-24 11:14:57','2022-12-14 19:25:41',46,'ilo_mac','ilo Card MAC Address','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:43',0,'2021-11-24 11:15:27','2022-12-14 19:25:43',47,'idc','IDC','2',1,0,0,1,NULL,0,0,NULL,'{}',0,NULL,NULL,1,'{\"default\": null}'),
-('2022-12-14 19:25:43',0,'2021-11-24 11:15:58','2022-12-14 19:25:43',48,'server_room','Server Room','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:16:16','2022-12-14 19:25:42',49,'rack','Rack Position','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:17:18','2022-12-14 19:25:42',50,'pos','Position Number','0',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:43',0,'2021-11-24 11:18:27','2022-12-14 19:25:43',51,'buy_date','Purchase Date','4',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:18:50','2022-12-14 19:25:42',52,'maintain_startdate','Warranty Start Date','4',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:43',0,'2021-11-24 11:19:08','2022-12-14 19:25:43',53,'maintain_enddate','Expiry Date','4',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:37:12','2022-12-14 19:25:42',54,'vserver_name','Virtual Machine Name','2',0,0,1,1,NULL,0,0,NULL,NULL,0,NULL,NULL,1,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:40:33','2022-12-14 19:25:42',55,'net_open','Network Open Status','2',1,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:43:59','2022-12-14 19:25:42',56,'vserver_type','Virtual Machine Type','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:44:24','2022-12-14 19:25:42',57,'host_ip','Host IP','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:44:54','2022-12-14 19:25:42',58,'harddisk','Hard Disk Information','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:51:56','2022-12-14 19:25:42',59,'ram_type','Memory Type','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:52:23','2022-12-14 19:25:42',60,'ram_speed','Memory Speed','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:54:21','2022-12-14 19:25:42',61,'hd_interface_type','Interface Type','2',1,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:54:42','2022-12-14 19:25:42',62,'hd_size','Hard Disk Space','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:54:59','2022-12-14 19:25:42',63,'hd_vendor','Hard Disk Manufacturer','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:55:24','2022-12-14 19:25:42',64,'hd_speed','Interface Speed','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:58:21','2022-12-14 19:25:42',65,'nic_ip','Network Card IP','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:58:42','2022-12-14 19:25:42',66,'nic_status','Network Card Status','2',0,0,0,1,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:59:03','2022-12-14 19:25:42',67,'nic_type','Network Card Model','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:59:21','2022-12-14 19:25:42',68,'nic_interface','Network Card Interface','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:42',0,'2021-11-24 11:59:51','2022-12-14 19:25:42',69,'nic_speed','Network Card Speed','2',0,0,0,0,NULL,0,0,NULL,NULL,0,NULL,NULL,0,NULL),
-('2022-12-14 19:25:41',0,'2022-11-10 10:07:59','2022-12-14 19:25:41',70,'domain','cm','2',0,0,0,0,1,0,0,'null','{\"fontOptions\": {\"color\": \"#606266\", \"fontStyle\": \"initial\", \"fontWeight\": \"bold\", \"textDecoration\": \"initial\"}}',0,NULL,NULL,0,'{\"default\": null}'),
-('2022-12-14 19:25:42',0,'2022-12-02 13:18:11','2022-12-14 19:25:42',71,'switch_sn','Serial Number','2',0,0,1,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
-('2022-12-14 19:25:43',0,'2022-12-02 13:20:31','2022-12-14 19:25:43',72,'router_sn','Serial Number','2',0,0,1,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
+('2022-12-14 19:25:41', 0, '2021-11-23 19:50:29', '2022-12-14 19:25:41', 1, 'bu_name', 'Business Unit', '2', 0, 0, 1, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-23 19:56:36', '2022-12-14 19:25:41', 2, 'product_name', 'Product Name', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-23 19:58:08', '2022-12-14 19:25:41', 3, 'project_name', 'Application Name', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-23 20:06:49', '2022-12-14 19:25:41', 4, 'sn', 'Server Serial Number', '2', 0, 0, 1, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-23 20:08:47', '2023-02-07 13:34:19', 5, 'uuid', 'UUID', '2', 0, 0, 1, 1, NULL, 0, 0, NULL, '{}', 0, NULL, NULL, 0, '{"default": null}'),
+('2022-12-14 19:25:42', 0, '2021-11-23 20:36:46', '2022-12-14 19:25:42', 6, 'ram_sn', 'Memory Serial Number', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-23 21:38:12', '2022-12-14 19:25:42', 7, 'hd_sn', 'Hard Disk Serial Number', '2', 0, 0, 1, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 09:42:50', '2022-12-14 19:25:42', 8, 'nic_mac', 'Network Interface Card MAC', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 09:45:05', '2022-12-14 19:25:42', 9, 'instance_id', 'Instance ID', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-24 10:11:38', '2022-12-14 19:25:41', 10, 'bu_owner', 'BU Owner', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-24 10:12:25', '2022-12-14 19:25:41', 11, 'bu_owner_mobile', 'BU Owner Mobile', '2', 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-24 10:12:56', '2022-12-14 19:25:41', 12, 'bu_owner_email', 'BU Owner Email', '2', 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-24 10:19:39', '2022-12-14 19:25:41', 13, 'product_owner', 'Product Owner', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-24 10:20:02', '2022-12-14 19:25:41', 14, 'product_owner_mobile', 'Owner Mobile', '2', 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-24 10:20:23', '2022-12-14 19:25:41', 15, 'product_owner_email', 'Owner Email Group', '2', 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-24 10:20:51', '2022-12-14 19:25:41', 16, 'product_op_duty', 'Product Line Application Operations', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-24 10:22:57', '2022-12-14 19:25:41', 17, 'project_type', 'Application Type', '2', 1, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-24 10:23:40', '2022-12-14 19:25:41', 18, 'project_status', 'Application Status', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-24 10:24:01', '2022-12-14 19:25:41', 19, 'project_description', 'Application Description', '2', 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 10:24:35', '2022-12-14 19:25:42', 20, 'rd_duty', 'Development Owner', '2', 0, 1, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-24 10:25:01', '2022-12-14 19:25:41', 21, 'qa_duty', 'QA Owner', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
+('2022-12-14 19:25:44', 0, '2021-11-24 10:25:25', '2023-02-07 13:56:47', 22, 'op_duty', 'Operations Owner', '2', 0, 1, 0, 1, NULL, 0, 0, NULL, '{}', 0, NULL, NULL, 1, '{"default": null}'),
+('2022-12-14 19:25:41', 0, '2021-11-24 10:40:03', '2023-03-03 17:50:36', 23, 'server_name', 'Server Name', '2', 0, 0, 0, 0, NULL, 0, 0, NULL, '{}', 0, NULL, NULL, 0, '{"default": "10"}'),
+('2022-12-14 19:25:42', 0, '2021-11-24 10:40:56', '2022-12-14 19:25:42', 24, 'oneagent_id', 'Agent ID', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 10:41:47', '2023-03-03 17:53:18', 25, 'private_ip', 'Private IP', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, '{"fontOptions": {"color": "#606266", "fontStyle": "initial", "fontWeight": "bold", "textDecoration": "initial"}}', 0, NULL, NULL, 0, '{"default": null}'),
+('2022-12-14 19:25:42', 0, '2021-11-24 10:42:29', '2022-12-14 19:25:42', 26, 'os_version', 'Operating System Version', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-24 10:43:06', '2022-12-14 19:25:41', 27, 'ctc_ip', 'China Telecom IP', '2', 0, 0, 1, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-24 10:49:30', '2022-12-14 19:25:41', 28, 'cnc_ip', 'China Unicom IP', '2', 0, 0, 1, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-24 10:49:55', '2022-12-14 19:25:41', 29, 'cmc_ip', 'China Mobile IP', '2', 0, 0, 1, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 10:50:19', '2022-12-14 19:25:42', 30, 'kernel_version', 'Kernel Version', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 10:51:20', '2022-12-14 19:25:42', 31, 'ssh_port', 'SSH Port', '0', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 10:59:07', '2022-12-14 19:25:42', 32, 'bu', 'Business Unit', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 10:59:57', '2022-12-14 19:25:42', 33, 'perm', 'Permission', '6', 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:43', 0, '2021-11-24 11:01:59', '2022-12-14 19:25:43', 34, 'status', 'Status', '2', 1, 0, 0, 1, NULL, 0, 0, NULL, '{}', 0, NULL, NULL, 0, '{"default": null}'),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:03:04', '2022-12-14 19:25:42', 35, 'env', 'Environment', '2', 1, 0, 0, 1, NULL, 0, 0, NULL, '{}', 0, NULL, NULL, 0, '{"default": null}'),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:06:00', '2022-12-14 19:25:42', 36, 'cpu', 'CPU Model', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, '{}', 0, NULL, NULL, 0, '{"default": null}'),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:06:59', '2022-12-14 19:25:42', 37, 'cpu_count', 'CPU Count', '0', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-24 11:09:18', '2022-12-14 19:25:41', 38, 'logic_cpu_count', 'Logical CPU Count', '0', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:12:24', '2022-12-14 19:25:42', 39, 'ram_size', 'RAM Size', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:12:48', '2022-12-14 19:25:42', 40, 'ram', 'RAM Information', '2', 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:13:11', '2022-12-14 19:25:42', 41, 'vnc_port', 'VNC Port', '0', 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-24 11:13:37', '2022-12-14 19:25:41', 42, 'manufacturer', 'Server Manufacturer', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-24 11:13:51', '2022-12-14 19:25:41', 43, 'device_spec', 'Server Model', '2', 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-24 11:14:07', '2022-12-14 19:25:41', 44, 'raid', 'RAID', '2', 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-24 11:14:31', '2022-12-14 19:25:41', 45, 'ilo_ip', 'iLO Card IP', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:41', 0, '2021-11-24 11:14:57', '2022-12-14 19:25:41', 46, 'ilo_mac', 'iLO Card MAC Address', '2', 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:43', 0, '2021-11-24 11:15:27', '2022-12-14 19:25:43', 47, 'idc', 'IDC', '2', 1, 0, 0, 1, NULL, 0, 0, NULL, '{}', 0, NULL, NULL, 1, '{"default": null}'),
+('2022-12-14 19:25:43', 0, '2021-11-24 11:15:58', '2022-12-14 19:25:43', 48, 'server_room', 'Server Room', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:16:16', '2022-12-14 19:25:42', 49, 'rack', 'Rack Position', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:17:18', '2022-12-14 19:25:42', 50, 'pos', 'Position Number', '0', 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:43', 0, '2021-11-24 11:18:27', '2022-12-14 19:25:43', 51, 'buy_date', 'Purchase Date', '4', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:18:50', '2022-12-14 19:25:42', 52, 'maintain_startdate', 'Maintenance Start Date', '4', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
+('2022-12-14 19:25:43', 0, '2021-11-24 11:19:08', '2022-12-14 19:25:43', 53, 'maintain_enddate', 'Warranty Expiration Date', '4', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:37:12', '2022-12-14 19:25:42', 54, 'vserver_name', 'Virtual Machine Name', '2', 0, 0, 1, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:40:33', '2022-12-14 19:25:42', 55, 'net_open', 'Network Open Status', '2', 1, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:43:59', '2022-12-14 19:25:42', 56, 'vserver_type', 'Virtual Machine Type', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:44:24', '2022-12-14 19:25:42', 57, 'host_ip', 'Host Machine IP', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:44:54', '2022-12-14 19:25:42', 58, 'harddisk', 'Hard Disk Information', '2', 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:51:56', '2022-12-14 19:25:42', 59, 'ram_type', 'RAM Type', '2', 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:52:23', '2022-12-14 19:25:42', 60, 'ram_speed', 'RAM Speed', '2', 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:54:21', '2022-12-14 19:25:42', 61, 'hd_interface_type', 'Hard Disk Interface Type', '2', 1, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:54:42', '2022-12-14 19:25:42', 62, 'hd_size', 'Hard Disk Size', '2', 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:54:59', '2022-12-14 19:25:42', 63, 'hd_vendor', 'Hard Disk Vendor', '2', 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:55:24', '2022-12-14 19:25:42', 64, 'hd_speed', 'Hard Disk Speed', '2', 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:58:21', '2022-12-14 19:25:42', 65, 'nic_ip', 'Network Card IP', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:58:42', '2022-12-14 19:25:42', 66, 'nic_status', 'Network Card Status', '2', 0, 0, 0, 1, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:59:03', '2022-12-14 19:25:42', 67, 'nic_type', 'Network Card Model', '2', 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:59:21', '2022-12-14 19:25:42', 68, 'nic_interface', 'Network Card Interface', '2', 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:42', 0, '2021-11-24 11:59:51', '2022-12-14 19:25:42', 69, 'nic_speed', 'Network Card Speed', '2', 0, 0, 0, 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, 0, NULL),
+('2022-12-14 19:25:41', 0, '2022-11-10 10:07:59', '2022-12-14 19:25:41', 70, 'domain', 'CM Domain', '2', 0, 0, 0, 0, 1, 0, 0, 'null', '{"fontOptions": {"color": "#606266", "fontStyle": "initial", "fontWeight": "bold", "textDecoration": "initial"}}', 0, NULL, NULL, 0, '{"default": null}'),
+('2022-12-14 19:25:42', 0, '2022-12-02 13:18:11', '2022-12-14 19:25:42', 71, 'switch_sn', 'Serial Number', '2', 0, 0, 1, 1, 1, 0, 0, 'null', '{}', 0, NULL, NULL, 0, '{"default": null}'),
+('2022-12-14 19:25:43', 0, '2022-12-02 13:20:31', '2022-12-14 19:25:43', 72, 'router_sn', 'Serial Number', '2', 0, 0, 1, 1, 1, 0, 0, 'null', '{}', 0, NULL, NULL, 0, '{"default": null}'),
 ('2022-12-14 19:25:43',0,'2022-12-02 13:21:46','2022-12-14 19:25:43',73,'firewall_sn','Serial Number','2',0,0,1,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
 ('2022-12-14 19:25:43',0,'2022-12-02 13:28:01','2023-05-23 15:24:36',74,'netdev_status','Status','2',1,0,0,1,1,0,0,'null','{}',0,NULL,NULL,1,'{\"default\": null}'),
-('2022-12-14 19:25:43',0,'2022-12-02 13:29:28','2022-12-14 19:25:43',75,'netdev_cost','Device Cost','0',0,0,0,1,1,0,0,'null','{}',0,NULL,NULL,1,'{\"default\": null}'),
-('2022-12-14 19:25:43',0,'2022-12-02 13:32:06','2022-12-14 19:25:43',76,'netdev_name','Device Name','2',0,0,0,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
-('2022-12-14 19:25:43',0,'2022-12-02 13:32:35','2022-12-14 19:25:43',77,'netdev_type','Device Type','2',0,0,0,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
-('2022-12-14 19:25:43',0,'2022-12-02 13:35:33','2022-12-14 19:25:43',78,'netdev_manufacturer','Device Manufacturer','0',0,0,0,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
+('2022-12-14 19:25:43',0,'2022-12-02 13:29:28','2022-12-14 19:25:43',75,'netdev_cost','Equipment Cost','0',0,0,0,1,1,0,0,'null','{}',0,NULL,NULL,1,'{\"default\": null}'),
+('2022-12-14 19:25:43',0,'2022-12-02 13:32:06','2022-12-14 19:25:43',76,'netdev_name','Equipment Name','2',0,0,0,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
+('2022-12-14 19:25:43',0,'2022-12-02 13:32:35','2022-12-14 19:25:43',77,'netdev_type','Equipment Type','2',0,0,0,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
+('2022-12-14 19:25:43',0,'2022-12-02 13:35:33','2022-12-14 19:25:43',78,'netdev_manufacturer','Equipment Manufacturer','0',0,0,0,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
 ('2022-12-14 19:25:43',0,'2022-12-02 13:45:38','2022-12-14 19:25:43',79,'manage_ip','Management IP','2',0,0,0,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
 ('2022-12-14 19:25:43',0,'2022-12-02 13:47:47','2022-12-14 19:25:43',80,'load_balance_sn','Serial Number','2',0,0,1,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
 ('2022-12-14 19:25:44',0,'2022-12-02 13:53:25','2022-12-14 19:25:44',81,'db_name','DB Name','2',0,0,1,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
@@ -899,7 +979,7 @@ INSERT INTO `c_attributes` VALUES
 ('2022-12-14 19:25:44',0,'2022-12-02 14:01:15','2022-12-14 19:25:44',84,'db_ip','IP','2',0,0,0,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
 ('2022-12-14 19:25:44',0,'2022-12-02 14:02:45','2022-12-14 19:25:44',85,'max_connections','Maximum Connections','0',0,0,0,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
 ('2022-12-14 19:25:43',0,'2022-12-02 14:02:59','2022-12-14 19:25:43',86,'charset','Character Set','2',0,0,0,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
-('2022-12-14 19:25:43',0,'2022-12-02 14:07:45','2022-12-14 19:25:43',87,'binlog_opened','Is binlog Open','2',1,0,0,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
+('2022-12-14 19:25:43',0,'2022-12-02 14:07:45','2022-12-14 19:25:43',87,'binlog_opened','Binlog Opened','2',1,0,0,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
 ('2022-12-14 19:25:44',0,'2022-12-02 14:10:44','2022-12-14 19:25:44',88,'cluster_role','Cluster Role','2',0,0,0,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
 ('2022-12-14 19:25:44',0,'2022-12-02 14:20:03','2022-12-14 19:25:44',89,'middleware_name','Instance Name','2',0,0,1,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
 ('2022-12-14 19:25:44',0,'2022-12-02 14:25:33','2022-12-14 19:25:44',90,'middleware_ip','IP','2',0,0,0,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
@@ -912,8 +992,8 @@ INSERT INTO `c_attributes` VALUES
 (NULL,0,'2023-03-08 16:50:34',NULL,98,'xxx_name','xxx','2',0,0,0,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
 (NULL,0,'2023-05-23 14:59:07','2023-05-23 15:19:04',99,'description','Description','2',0,0,0,0,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
 (NULL,0,'2023-05-23 14:59:21',NULL,100,'ips','IPs','2',0,1,0,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": []}'),
-(NULL,0,'2023-05-23 15:18:21',NULL,101,'netdev_manufacturer1','Device Manufacturer','2',0,0,0,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
-(NULL,0,'2023-07-11 15:13:59',NULL,102,'ldap','Business aza','2',1,0,0,0,46,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}');
+(NULL,0,'2023-05-23 15:18:21',NULL,101,'netdev_manufacturer1','Equipment Manufacturer','2',0,0,0,1,1,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}'),
+(NULL,0,'2023-07-11 15:13:59',NULL,102,'ldap','Business AZA','2',1,0,0,0,46,0,0,'null','{}',0,NULL,NULL,0,'{\"default\": null}');
 /*!40000 ALTER TABLE `c_attributes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -954,17 +1034,16 @@ CREATE TABLE `c_c_d` (
 LOCK TABLES `c_c_d` WRITE;
 /*!40000 ALTER TABLE `c_c_d` DISABLE KEYS */;
 INSERT INTO `c_c_d` VALUES 
-(NULL,0,'2022-10-17 17:24:57','2023-03-08 09:51:45',1,NULL,0,0,0,1,NULL,NULL,'{\"h\": 3, \"w\": 2, \"x\": 4, \"y\": 0, \"name\": \"Business Unit\", \"chartType\": \"bar\", \"fontConfig\": {\"color\": \"#0906ac\", \"fontSize\": \"50px\"}}'),
-(NULL,0,'2022-10-17 17:25:28','2023-05-20 13:55:56',2,NULL,0,0,0,2,NULL,NULL,'{\"h\": 3, \"w\": 2, \"x\": 0, \"y\": 0, \"name\": \"Product\", \"chartType\": \"bar\", \"fontConfig\": {\"color\": \"#7e166b\", \"fontSize\": \"50px\"}}'),
-(NULL,0,'2022-10-17 17:25:43','2023-05-20 13:55:55',3,NULL,0,0,0,3,NULL,NULL,'{\"h\": 3, \"w\": 2, \"x\": 2, \"y\": 0, \"name\": \"Application\", \"chartType\": \"bar\", \"fontConfig\": {\"color\": \"#03052b\", \"fontSize\": \"50px\"}}'),
-(NULL,0,'2022-10-17 17:26:02','2023-03-08 09:51:45',4,NULL,0,0,0,4,NULL,NULL,'{\"h\": 3, \"w\": 2, \"x\": 6, \"y\": 0, \"name\": \"Physical Machine\", \"chartType\": \"bar\", \"fontConfig\": {\"color\": \"#368c5b\", \"fontSize\": \"50px\"}}'),
-(NULL,0,'2022-10-17 17:26:37','2022-10-17 17:26:58',5,NULL,0,0,0,5,NULL,NULL,'{\"h\": 3, \"w\": 2, \"x\": 8, \"y\": 0, \"name\": \"Virtual Machine\", \"chartType\": \"bar\", \"fontConfig\": {\"color\": \"#438a42\", \"fontSize\": \"50px\"}}'),
-(NULL,0,'2022-10-17 17:26:54','2022-10-17 17:27:02',6,NULL,0,0,0,9,NULL,NULL,'{\"h\": 3, \"w\": 2, \"x\": 10, \"y\": 0, \"name\": \"docker\", \"chartType\": \"bar\", \"fontConfig\": {\"color\": \"#04b919\", \"fontSize\": \"50px\"}}'),
-(NULL,0,'2022-10-17 17:28:04','2023-05-20 13:55:56',7,'By Business Unit',2,0,0,1,NULL,3,'{\"h\": 8, \"w\": 6, \"x\": 0, \"y\": 3, \"name\": \"By Business Unit\", \"chartType\": \"bar\"}'),
-(NULL,0,'2022-10-17 17:29:35','2023-03-08 09:51:45',8,'By IDC Physical Machine',1,0,0,4,47,NULL,'{\"h\": 8, \"w\": 6, \"x\": 6, \"y\": 3, \"name\": \"By IDC Physical Machine\", \"chartType\": \"pie\"}'),
-(NULL,0,'2022-10-17 17:31:01','2023-05-20 13:55:56',9,'By Environment Physical Machine',1,0,0,4,35,NULL,'{\"h\": 8, \"w\": 6, \"x\": 0, \"y\": 11, \"name\": \"By Environment Physical Machine\", \"chartType\": \"pie\"}'),
-(NULL,0,'2022-10-17 17:31:42','2023-03-08 09:51:45',10,'By Status Physical Machine',1,0,0,4,34,NULL,'{\"h\": 8, \"w\": 6, \"x\": 6, \"y\": 11, \"name\": \"By Status Physical Machine\", \"chartType\": \"pie\"}');
-
+(NULL,0,'2022-10-17 17:24:57','2023-03-08 09:51:45',1,NULL,0,0,0,1,NULL,NULL,'{"h": 3, "w": 2, "x": 4, "y": 0, "name": "Business Unit", "chartType": "bar", "fontConfig": {"color": "#0906ac", "fontSize": "50px"}}'),
+(NULL,0,'2022-10-17 17:25:28','2023-05-20 13:55:56',2,NULL,0,0,0,2,NULL,NULL,'{"h": 3, "w": 2, "x": 0, "y": 0, "name": "Product", "chartType": "bar", "fontConfig": {"color": "#7e166b", "fontSize": "50px"}}'),
+(NULL,0,'2022-10-17 17:25:43','2023-05-20 13:55:55',3,NULL,0,0,0,3,NULL,NULL,'{"h": 3, "w": 2, "x": 2, "y": 0, "name": "Application", "chartType": "bar", "fontConfig": {"color": "#03052b", "fontSize": "50px"}}'),
+(NULL,0,'2022-10-17 17:26:02','2023-03-08 09:51:45',4,NULL,0,0,0,4,NULL,NULL,'{"h": 3, "w": 2, "x": 6, "y": 0, "name": "Physical Machine", "chartType": "bar", "fontConfig": {"color": "#368c5b", "fontSize": "50px"}}'),
+(NULL,0,'2022-10-17 17:26:37','2022-10-17 17:26:58',5,NULL,0,0,0,5,NULL,NULL,'{"h": 3, "w": 2, "x": 8, "y": 0, "name": "Virtual Machine", "chartType": "bar", "fontConfig": {"color": "#438a42", "fontSize": "50px"}}'),
+(NULL,0,'2022-10-17 17:26:54','2022-10-17 17:27:02',6,NULL,0,0,0,9,NULL,NULL,'{"h": 3, "w": 2, "x": 10, "y": 0, "name": "Docker", "chartType": "bar", "fontConfig": {"color": "#04b919", "fontSize": "50px"}}'),
+(NULL,0,'2022-10-17 17:28:04','2023-05-20 13:55:56',7,'Statistical by Business Unit',2,0,0,1,NULL,3,'{"h": 8, "w": 6, "x": 0, "y": 3, "name": "Statistical by Business Unit", "chartType": "bar"}'),
+(NULL,0,'2022-10-17 17:29:35','2023-03-08 09:51:45',8,'Statistical Physical Machines by IDC',1,0,0,4,47,NULL,'{"h": 8, "w": 6, "x": 6, "y": 3, "name": "Statistical Physical Machines by IDC", "chartType": "pie"}'),
+(NULL,0,'2022-10-17 17:31:01','2023-05-20 13:55:56',9,'Statistical Physical Machines by Environment',1,0,0,4,35,NULL,'{"h": 8, "w": 6, "x": 0, "y": 11, "name": "Statistical Physical Machines by Environment", "chartType": "pie"}'),
+(NULL,0,'2022-10-17 17:31:42','2023-03-08 09:51:45',10,'Statistical Physical Machines by Status',1,0,0,4,34,NULL,'{"h": 8, "w": 6, "x": 6, "y": 11, "name": "Statistical Physical Machines by Status", "chartType": "pie"}');
 /*!40000 ALTER TABLE `c_c_d` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1193,40 +1272,41 @@ INSERT INTO `c_choice_texts` VALUES
 (NULL,0,'2022-12-14 19:25:41',NULL,55,17,'mq','null'),
 (NULL,0,'2022-12-14 19:25:41',NULL,56,17,'api','null'),
 (NULL,0,'2022-12-14 19:25:42',NULL,76,55,'Public Network','null'),
-(NULL,0,'2022-12-14 19:25:42',NULL,77,55,'Intranet Only','null'),
+(NULL,0,'2022-12-14 19:25:42',NULL,77,55,'Internal Network Only','null'),
 (NULL,0,'2022-12-14 19:25:42',NULL,81,61,'SAS','null'),
 (NULL,0,'2022-12-14 19:25:42',NULL,82,61,'SATA','null'),
 (NULL,0,'2022-12-14 19:25:42',NULL,83,61,'Solid','null'),
 (NULL,0,'2022-12-14 19:25:42',NULL,84,61,'SolidStateSATA','null'),
 (NULL,0,'2022-12-14 19:25:42',NULL,85,61,'Solid State SATA','null'),
-(NULL,0,'2022-12-14 19:25:43',NULL,106,47,'Nanhui','{\"icon\": {\"color\": \"\"}, \"style\": {\"color\": \"#305B09\", \"fontStyle\": \"italic\", \"fontWeight\": \"bold\"}}'),
-(NULL,0,'2022-12-14 19:25:43',NULL,107,47,'Zhangjiang','{\"icon\": {\"color\": \"\"}, \"style\": {\"color\": \"#05302A\", \"fontStyle\": \"italic\", \"fontWeight\": \"bold\"}}'),
-(NULL,0,'2022-12-14 19:25:43',NULL,108,47,'Waigaoqiao','{\"icon\": {\"color\": \"\"}, \"style\": {\"color\": \"#0C2659\", \"fontStyle\": \"italic\", \"fontWeight\": \"bold\"}}'),
-(NULL,0,'2022-12-14 19:25:43',NULL,114,87,'Yes','{\"icon\": {}, \"style\": {\"color\": \"#417810\"}}'),
-(NULL,0,'2022-12-14 19:25:43',NULL,115,87,'No','{\"icon\": {}, \"style\": {\"color\": \"#9F1616\"}}'),
-(NULL,0,'2023-01-11 18:37:49',NULL,120,97,'A3','{\"icon\": {}, \"style\": {}}'),
-(NULL,0,'2023-01-11 18:37:49',NULL,121,97,'A4','{\"icon\": {}, \"style\": {}}'),
-(NULL,0,'2023-01-16 17:24:39',NULL,128,5,'6666','{\"icon\": {}, \"style\": {}}'),
-(NULL,0,'2023-01-16 17:24:39',NULL,129,5,'999','{\"icon\": {}, \"style\": {}}'),
-(NULL,0,'2023-01-16 17:24:39',NULL,130,5,'111','{\"icon\": {}, \"style\": {}}'),
-(NULL,0,'2023-01-16 17:24:39',NULL,131,5,'222','{\"icon\": {}, \"style\": {}}'),
-(NULL,0,'2023-01-16 17:24:39',NULL,132,5,'333','{\"icon\": {}, \"style\": {}}'),
-(NULL,0,'2023-01-16 17:24:39',NULL,133,5,'444','{\"icon\": {}, \"style\": {}}'),
-(NULL,0,'2023-03-03 17:50:49',NULL,134,34,'Online','{\"icon\": {\"color\": \"\"}, \"style\": {\"color\": \"#065C30\", \"backgroundColor\": \"#D9F7BE\"}}'),
-(NULL,0,'2023-03-03 17:50:49',NULL,135,34,'Offline','{\"icon\": {\"color\": \"\"}, \"style\": {\"color\": \"#881111\", \"backgroundColor\": \"#FFCCC7\"}}'),
-(NULL,0,'2023-03-03 17:50:49',NULL,136,34,'Standby','{\"icon\": {\"color\": \"\"}, \"style\": {\"color\": \"#0A483F\", \"backgroundColor\": \"#BAE7FF\"}}'),
-(NULL,0,'2023-03-03 17:50:49',NULL,137,34,'Maintenance','{\"icon\": {\"color\": \"\"}, \"style\": {\"color\": \"#622C0A\", \"backgroundColor\": \"#FFD8BF\"}}'),
-(NULL,0,'2023-03-03 17:50:49',NULL,138,34,'Reinstall','{\"icon\": {\"color\": \"\"}, \"style\": {\"color\": \"#5C4D0E\", \"backgroundColor\": \"#FFF1B8\"}}'),
-(NULL,0,'2023-03-03 17:52:38',NULL,139,35,'test','{\"icon\": {\"name\": \"huiyiguanli\", \"color\": \"\"}, \"style\": {}}'),
-(NULL,0,'2023-03-03 17:52:38',NULL,140,35,'ppe','{\"icon\": {\"name\": \"renwuguanli\", \"color\": \"\"}, \"style\": {}}'),
-(NULL,0,'2023-03-03 17:52:38',NULL,141,35,'prod','{\"icon\": {\"name\": \"jiangbei\", \"color\": \"\"}, \"style\": {\"color\": \"#741717\"}}'),
-(NULL,0,'2023-05-23 15:24:36',NULL,142,74,'Online','{\"icon\": {\"name\": \"caise-zaixian\", \"color\": \"\"}, \"style\": {\"fontWeight\": \"bold\"}}'),
-(NULL,0,'2023-05-23 15:24:36',NULL,143,74,'Offline','{\"icon\": {\"name\": \"caise-xiaxian\", \"color\": \"\"}, \"style\": {\"fontWeight\": \"bold\"}}'),
-(NULL,0,'2023-07-11 15:14:28',NULL,148,102,'1','{\"icon\": {}, \"style\": {}}'),
-(NULL,0,'2023-07-11 15:14:28',NULL,149,102,'aaa','{\"icon\": {\"name\": \"caise-zaixian\", \"color\": \"\"}, \"style\": {}}'),
-(NULL,0,'2023-07-11 15:14:28',NULL,150,102,'asdasda','{\"icon\": {}, \"style\": {}}'),
-(NULL,0,'2023-07-11 15:14:28',NULL,151,102,'assda','{\"icon\": {}, \"style\": {}}'),
-(NULL,0,'2023-07-11 15:14:28',NULL,152,102,'qqqq','{\"icon\": {}, \"style\": {}}');
+(NULL,0,'2022-12-14 19:25:43',NULL,106,47,'NanHui','{"icon": {"color": ""}, "style": {"color": "#305B09", "fontStyle": "italic", "fontWeight": "bold"}}'),
+(NULL,0,'2022-12-14 19:25:43',NULL,107,47,'ZhangJiang','{"icon": {"color": ""}, "style": {"color": "#05302A", "fontStyle": "italic", "fontWeight": "bold"}}'),
+(NULL,0,'2022-12-14 19:25:43',NULL,108,47,'WaiGaoQiao','{"icon": {"color": ""}, "style": {"color": "#0C2659", "fontStyle": "italic", "fontWeight": "bold"}}'),
+(NULL,0,'2022-12-14 19:25:43',NULL,114,87,'Yes','{"icon": {}, "style": {"color": "#417810"}}'),
+(NULL,0,'2022-12-14 19:25:43',NULL,115,87,'No','{"icon": {}, "style": {"color": "#9F1616"}}'),
+(NULL,0,'2023-01-11 18:37:49',NULL,120,97,'A3','{"icon": {}, "style": {}}'),
+(NULL,0,'2023-01-11 18:37:49',NULL,121,97,'A4','{"icon": {}, "style": {}}'),
+(NULL,0,'2023-01-16 17:24:39',NULL,128,5,'6666','{"icon": {}, "style": {}}'),
+(NULL,0,'2023-01-16 17:24:39',NULL,129,5,'999','{"icon": {}, "style": {}}'),
+(NULL,0,'2023-01-16 17:24:39',NULL,130,5,'111','{"icon": {}, "style": {}}'),
+(NULL,0,'2023-01-16 17:24:39',NULL,131,5,'222','{"icon": {}, "style": {}}'),
+(NULL,0,'2023-01-16 17:24:39',NULL,132,5,'333','{"icon": {}, "style": {}}'),
+(NULL,0,'2023-01-16 17:24:39',NULL,133,5,'444','{"icon": {}, "style": {}}'),
+(NULL,0,'2023-03-03 17:50:49',NULL,134,34,'Online','{"icon": {"color": ""}, "style": {"color": "#065C30", "backgroundColor": "#D9F7BE"}}'),
+(NULL,0,'2023-03-03 17:50:49',NULL,135,34,'Offline','{"icon": {"color": ""}, "style": {"color": "#881111", "backgroundColor": "#FFCCC7"}}'),
+(NULL,0,'2023-03-03 17:50:49',NULL,136,34,'Standby','{"icon": {"color": ""}, "style": {"color": "#0A483F", "backgroundColor": "#BAE7FF"}}'),
+(NULL,0,'2023-03-03 17:50:49',NULL,137,34,'Maintenance','{"icon": {"color": ""}, "style": {"color": "#622C0A", "backgroundColor": "#FFD8BF"}}'),
+(NULL,0,'2023-03-03 17:50:49',NULL,138,34,'Reinstall','{"icon": {"color": ""}, "style": {"color": "#5C4D0E", "backgroundColor": "#FFF1B8"}}'),
+(NULL,0,'2023-03-03 17:52:38',NULL,139,35,'test','{"icon": {"name": "huiyiguanli", "color": ""}, "style": {}}'),
+(NULL,0,'2023-03-03 17:52:38',NULL,140,35,'ppe','{"icon": {"name": "renwuguanli", "color": ""}, "style": {}}'),
+(NULL,0,'2023-03-03 17:52:38',NULL,141,35,'prod','{"icon": {"name": "jiangbei", "color": ""}, "style": {"color": "#741717"}}'),
+(NULL,0,'2023-05-23 15:24:36',NULL,142,74,'Online','{"icon": {"name": "caise-zaixian", "color": ""}, "style": {"fontWeight": "bold"}}'),
+(NULL,0,'2023-05-23 15:24:36',NULL,143,74,'Offline','{"icon": {"name": "caise-xiaxian", "color": ""}, "style": {"fontWeight": "bold"}}'),
+(NULL,0,'2023-07-11 15:14:28',NULL,148,102,'1','{"icon": {}, "style": {}}'),
+(NULL,0,'2023-07-11 15:14:28',NULL,149,102,'aaa','{"icon": {"name": "caise-zaixian", "color": ""}, "style": {}}'),
+(NULL,0,'2023-07-11 15:14:28',NULL,150,102,'asdasda','{"icon": {}, "style": {}}'),
+(NULL,0,'2023-07-11 15:14:28',NULL,151,102,'assda','{"icon": {}, "style": {}}'),
+(NULL,0,'2023-07-11 15:14:28',NULL,152,102,'qqqq','{"icon": {}, "style": {}}');
+
 /*!40000 ALTER TABLE `c_choice_texts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1383,9 +1463,9 @@ INSERT INTO `c_ci_type_attribute_groups` VALUES
 ('2022-12-14 19:25:46',1,'2021-11-24 11:53:31','2022-12-14 19:25:46',10,'Default',7,1),
 ('2022-12-14 19:25:46',1,'2021-11-24 11:57:52','2022-12-14 19:25:46',11,'Default',8,1),
 ('2022-12-14 19:25:46',1,'2021-11-24 12:00:51','2022-12-14 19:25:46',12,'Default',9,1),
-('2022-12-14 19:25:45',1,'2022-08-22 19:52:07','2022-12-14 19:25:45',13,'Default',1,0),
+('2022-12-14 19:25:45',1,'2022-08-22 19:52:07','2022-11-23 11:19:56',13,'Default',1,0),
 ('2022-12-14 19:25:45',1,'2022-08-23 08:57:24','2022-12-14 19:25:45',14,'Default',3,1),
-('2022-11-23 11:19:56',1,'2022-11-23 11:19:36','2022-11-23 11:19:56',15,'test',1,2),
+('2022-11-23 11:19:56',1,'2022-11-23 11:19:36','2022-11-23 11:19:56',15,'Test',1,2),
 ('2022-12-14 19:25:46',1,'2022-12-02 13:33:46','2022-12-14 19:25:46',16,'Default',28,1),
 ('2022-12-14 19:25:46',1,'2022-12-02 13:36:24','2022-12-14 19:25:46',17,'Default',29,1),
 ('2022-12-14 19:25:46',1,'2022-12-02 13:38:26','2022-12-14 19:25:46',18,'Default',30,1),
@@ -1415,7 +1495,15 @@ INSERT INTO `c_ci_type_attribute_groups` VALUES
 (NULL,0,'2022-12-02 13:36:24','2022-12-02 13:36:24',42,'Default',29,1),
 (NULL,0,'2022-12-02 13:38:26','2022-12-02 13:38:26',43,'Default',30,1),
 (NULL,0,'2022-12-02 13:48:47','2022-12-02 13:48:47',44,'Default',31,1),
-(NULL,0,'2022-12-02 14:10:53','2022-12-15 10:39:37',45,'Default1',32,1);
+(NULL,0,'2022-12-02 14:10:53','2022-12-15 10:39:37',45,'Default1',32,1),
+(NULL,0,'2022-12-02 14:13:45','2022-12-02 14:13:45',46,'Default',33,1),
+(NULL,0,'2022-12-02 14:15:33','2022-12-02 14:15:33',47,'Default',34,1),
+(NULL,0,'2022-12-02 14:17:30','2022-12-02 14:17:30',48,'Default',35,1),
+(NULL,0,'2022-12-02 14:20:13','2022-12-02 14:20:13',49,'Default',36,1),
+(NULL,0,'2022-12-02 14:30:29','2022-12-02 14:30:29',50,'Default',37,1),
+(NULL,0,'2022-12-02 14:31:07','2022-12-02 14:31:07',51,'Default',38,1),
+(NULL,0,'2022-12-26 22:07:48','2022-12-26 22:07:48',52,'Test',7,2);
+
 /*!40000 ALTER TABLE `c_ci_type_attribute_groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1517,14 +1605,15 @@ CREATE TABLE `c_ci_type_groups` (
 
 LOCK TABLES `c_ci_type_groups` WRITE;
 /*!40000 ALTER TABLE `c_ci_type_groups` DISABLE KEYS */;
-INSERT INTO `c_ci_type_groups` VALUES 
-(NULL,0,'2021-11-23 19:49:05','2022-10-19 14:43:24',1,'Business',0),
-(NULL,0,'2021-11-23 20:06:10','2022-12-02 13:11:27',2,'Server',1),
-(NULL,0,'2021-11-24 09:43:46','2022-12-02 13:50:51',3,'Container',5),
-(NULL,0,'2022-12-02 13:11:36','2022-12-02 13:11:40',4,'Network Device',2),
-(NULL,0,'2022-12-02 13:50:33','2022-12-02 13:50:39',5,'Database',3),
-(NULL,0,'2022-12-02 13:50:48','2022-12-02 13:50:51',6,'Middleware',4),
-('2023-01-03 18:37:05',1,'2023-01-03 18:36:55','2023-01-03 18:37:05',7,'123',0);
+INSERT INTO `c_ci_type_groups` VALUES
+(NULL, 0, '2021-11-23 19:49:05', '2022-10-19 14:43:24', 1, 'Business', 0),
+(NULL, 0, '2021-11-23 20:06:10', '2022-12-02 13:11:27', 2, 'Server', 1),
+(NULL, 0, '2021-11-24 09:43:46', '2022-12-02 13:50:51', 3, 'Container', 5),
+(NULL, 0, '2022-12-02 13:11:36', '2022-12-02 13:11:40', 4, 'Network Equipment', 2),
+(NULL, 0, '2022-12-02 13:50:33', '2022-12-02 13:50:39', 5, 'Database', 3),
+(NULL, 0, '2022-12-02 13:50:48', '2022-12-02 13:50:51', 6, 'Middleware', 4),
+('2023-01-03 18:37:05', 1, '2023-01-03 18:36:55', '2023-01-03 18:37:05', 7, '123', 0);
+
 /*!40000 ALTER TABLE `c_ci_type_groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1639,27 +1728,28 @@ CREATE TABLE `c_ci_types` (
 
 LOCK TABLES `c_ci_types` WRITE;
 /*!40000 ALTER TABLE `c_ci_types` DISABLE KEYS */;
-INSERT INTO `c_ci_types` VALUES 
-(NULL,0,'2021-11-23 19:50:34','2023-03-03 17:48:20',1,'bu','Business Unit',1,1,0,0,NULL,'caise-bumen$$',NULL),
-(NULL,0,'2021-11-23 19:56:40','2023-03-03 17:48:29',2,'product','Product',2,1,0,0,NULL,'caise-chanpin$$',NULL),
-(NULL,0,'2021-11-23 19:58:15','2023-03-03 17:48:36',3,'project','Application',3,1,0,0,NULL,'caise-yingyong$$',NULL),
-(NULL,0,'2021-11-23 20:06:53','2023-03-03 17:46:17',4,'server','Physical Machine',4,1,0,0,NULL,'caise-wuliji$$',NULL),
-(NULL,0,'2021-11-23 20:08:52','2023-03-03 17:46:29',5,'vserver','Virtual Machine',5,1,0,0,NULL,'caise-xuniji$$',NULL),
-(NULL,0,'2021-11-23 20:36:55','2023-03-03 17:47:18',6,'RAM','Memory',6,1,0,0,NULL,'caise-neicun$$',NULL),
-(NULL,0,'2021-11-23 21:38:17','2023-03-03 17:46:40',7,'harddisk','Hard Disk',7,1,0,0,NULL,'caise-yingpan$$',NULL),
-(NULL,0,'2021-11-24 09:42:55','2023-03-03 17:46:51',8,'NIC','Network Card',8,1,0,0,NULL,'caise-wangka$$',NULL),
-(NULL,0,'2021-11-24 09:45:10','2023-03-03 17:50:21',9,'docker','docker',9,1,0,0,NULL,'caise-docker$$',NULL),
-(NULL,0,'2022-12-02 13:18:17','2023-03-03 17:47:32',28,'switch','Switch',71,1,0,0,1,'caise-jiaohuanji$$',NULL),
-(NULL,0,'2022-12-02 13:20:36','2023-03-03 17:47:43',29,'router','Router',72,1,0,0,1,'caise-luyouqi$$',NULL),
-(NULL,0,'2022-12-02 13:21:51','2023-03-03 17:47:55',30,'firewall','Firewall',73,1,0,0,1,'caise-fanghuoqiang$$',NULL),
-(NULL,0,'2022-12-02 13:47:54','2023-03-03 17:48:07',31,'load_balance','Load Balancer',80,1,0,0,1,'caise-fuzaijunheng$$',NULL),
-(NULL,0,'2022-12-02 13:53:30','2023-03-03 17:48:53',32,'mysql','MySQL',81,1,0,0,1,'caise-mySQL$$',NULL),
-(NULL,0,'2022-12-02 13:54:13','2023-03-03 17:49:06',33,'postgresql','PostgreSQL',81,1,0,0,1,'caise-PostgreSQL$$',NULL),
-(NULL,0,'2022-12-02 13:54:31','2023-03-03 17:49:15',34,'mongodb','MongoDB',81,1,0,0,1,'caise-mongodb$$',NULL),
-(NULL,0,'2022-12-02 13:56:01','2023-03-03 17:49:31',35,'mssql','MSSQL',81,1,0,0,1,'caise-SQLServer$$',NULL),
-(NULL,0,'2022-12-02 14:20:07','2023-03-03 17:49:46',36,'nginx','Nginx',89,1,0,0,1,'caise-nginx$$',NULL),
-(NULL,0,'2022-12-02 14:20:49','2023-03-03 17:49:58',37,'apache','Apache',89,1,0,0,1,'caise-apache$$',NULL),
-(NULL,0,'2022-12-02 14:21:04','2023-03-03 17:50:08',38,'tomcat','Tomcat',89,1,0,0,1,'caise-tomcat$$',NULL);
+INSERT INTO `c_ci_types` VALUES
+(NULL, 0, '2021-11-23 19:50:34', '2023-03-03 17:48:20', 1, 'bu', 'Business Unit', 1, 1, 0, 0, NULL, 'caise-bumen$$', NULL),
+(NULL, 0, '2021-11-23 19:56:40', '2023-03-03 17:48:29', 2, 'product', 'Product', 2, 1, 0, 0, NULL, 'caise-chanpin$$', NULL),
+(NULL, 0, '2021-11-23 19:58:15', '2023-03-03 17:48:36', 3, 'project', 'Application', 3, 1, 0, 0, NULL, 'caise-yingyong$$', NULL),
+(NULL, 0, '2021-11-23 20:06:53', '2023-03-03 17:46:17', 4, 'server', 'Physical Machine', 4, 1, 0, 0, NULL, 'caise-wuliji$$', NULL),
+(NULL, 0, '2021-11-23 20:08:52', '2023-03-03 17:46:29', 5, 'vserver', 'Virtual Machine', 5, 1, 0, 0, NULL, 'caise-xuniji$$', NULL),
+(NULL, 0, '2021-11-23 20:36:55', '2023-03-03 17:47:18', 6, 'RAM', 'Memory', 6, 1, 0, 0, NULL, 'caise-neicun$$', NULL),
+(NULL, 0, '2021-11-23 21:38:17', '2023-03-03 17:46:40', 7, 'harddisk', 'Hard Disk', 7, 1, 0, 0, NULL, 'caise-yingpan$$', NULL),
+(NULL, 0, '2021-11-24 09:42:55', '2023-03-03 17:46:51', 8, 'NIC', 'Network Interface Card', 8, 1, 0, 0, NULL, 'caise-wangka$$', NULL),
+(NULL, 0, '2021-11-24 09:45:10', '2023-03-03 17:50:21', 9, 'docker', 'Docker', 9, 1, 0, 0, NULL, 'caise-docker$$', NULL),
+(NULL, 0, '2022-12-02 13:18:17', '2023-03-03 17:47:32', 28, 'switch', 'Switch', 71, 1, 0, 0, 1, 'caise-jiaohuanji$$', NULL),
+(NULL, 0, '2022-12-02 13:20:36', '2023-03-03 17:47:43', 29, 'router', 'Router', 72, 1, 0, 0, 1, 'caise-luyouqi$$', NULL),
+(NULL, 0, '2022-12-02 13:21:51', '2023-03-03 17:47:55', 30, 'firewall', 'Firewall', 73, 1, 0, 0, 1, 'caise-fanghuoqiang$$', NULL),
+(NULL, 0, '2022-12-02 13:47:54', '2023-03-03 17:48:07', 31, 'load_balance', 'Load Balancer', 80, 1, 0, 0, 1, 'caise-fuzaijunheng$$', NULL),
+(NULL, 0, '2022-12-02 13:53:30', '2023-03-03 17:48:53', 32, 'mysql', 'MySQL', 81, 1, 0, 0, 1, 'caise-mySQL$$', NULL),
+(NULL, 0, '2022-12-02 13:54:13', '2023-03-03 17:49:06', 33, 'postgresql', 'PostgreSQL', 81, 1, 0, 0, 1, 'caise-PostgreSQL$$', NULL),
+(NULL, 0, '2022-12-02 13:54:31', '2023-03-03 17:49:15', 34, 'mongodb', 'MongoDB', 81, 1, 0, 0, 1, 'caise-mongodb$$', NULL),
+(NULL, 0, '2022-12-02 13:56:01', '2023-03-03 17:49:31', 35, 'mssql', 'MSSQL', 81, 1, 0, 0, 1, 'caise-SQLServer$$', NULL),
+(NULL, 0, '2022-12-02 14:20:07', '2023-03-03 17:49:46', 36, 'nginx', 'Nginx', 89, 1, 0, 0, 1, 'caise-nginx$$', NULL),
+(NULL, 0, '2022-12-02 14:20:49', '2023-03-03 17:49:58', 37, 'apache', 'Apache', 89, 1, 0, 0, 1, 'caise-apache$$', NULL),
+(NULL, 0, '2022-12-02 14:21:04', '2023-03-03 17:50:08', 38, 'tomcat', 'Tomcat', 89, 1, 0, 0, 1, 'caise-tomcat$$', NULL);
+
 /*!40000 ALTER TABLE `c_ci_types` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1726,8 +1816,8 @@ CREATE TABLE `c_prv` (
 
 LOCK TABLES `c_prv` WRITE;
 /*!40000 ALTER TABLE `c_prv` DISABLE KEYS */;
-INSERT INTO `c_prv` VALUES 
-(NULL, 0, '2023-05-23 17:21:33', NULL, 18, 'Service Tree', '[{\"child_id\": 2, \"parent_id\": 1}, {\"child_id\": 3, \"parent_id\": 2}]', 0, 1);
+INSERT INTO `c_prv` VALUES
+(NULL, 0, '2023-05-23 17:21:33', NULL, 18, 'Service Tree', '[{"child_id": 2, "parent_id": 1}, {"child_id": 3, "parent_id": 2}]', 0, 1);
 /*!40000 ALTER TABLE `c_prv` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2252,12 +2342,13 @@ CREATE TABLE `c_value_index_texts` (
 
 LOCK TABLES `c_value_index_texts` WRITE;
 /*!40000 ALTER TABLE `c_value_index_texts` DISABLE KEYS */;
-INSERT INTO `c_value_index_texts` VALUES 
-(NULL,0,'2023-07-11 17:49:51',NULL,1,1,1,'Business Unit 1'),
-(NULL,0,'2023-07-11 17:50:29',NULL,2,2,2,'Product 1'),
-(NULL,0,'2023-07-11 17:50:36',NULL,3,3,3,'Application 1'),
-(NULL,0,'2023-07-11 17:51:01',NULL,4,4,25,'192.168.2.2'),
-(NULL,0,'2023-07-11 17:51:01',NULL,5,4,4,'xxxxxxx');
+INSERT INTO `c_value_index_texts` VALUES
+(NULL, 0, '2023-07-11 17:49:51', NULL, 1, 1, 1, 'Business Unit 1'),
+(NULL, 0, '2023-07-11 17:50:29', NULL, 2, 2, 2, 'Product 1'),
+(NULL, 0, '2023-07-11 17:50:36', NULL, 3, 3, 3, 'Application 1'),
+(NULL, 0, '2023-07-11 17:51:01', NULL, 4, 4, 25, '192.168.2.2'),
+(NULL, 0, '2023-07-11 17:51:01', NULL, 5, 4, 4, 'xxxxxxx');
+
 /*!40000 ALTER TABLE `c_value_index_texts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2360,7 +2451,7 @@ CREATE TABLE `c_value_texts` (
 
 LOCK TABLES `c_value_texts` WRITE;
 /*!40000 ALTER TABLE `c_value_texts` DISABLE KEYS */;
-INSERT INTO `c_value_texts` VALUES (NULL,0,'2023-07-11 17:51:01',NULL,1,4,23,'Physical Machine 1');
+INSERT INTO `c_value_texts` VALUES (NULL,0,'2023-07-11 17:51:01',NULL,1,4,23,'物理机1');
 /*!40000 ALTER TABLE `c_value_texts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2405,11 +2496,11 @@ CREATE TABLE `common_department` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `department_id` int(11) NOT NULL AUTO_INCREMENT,
-  `department_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Department Name',
-  `department_director_id` int(11) DEFAULT NULL COMMENT 'Head of Department ID',
-  `department_parent_id` int(11) DEFAULT NULL COMMENT 'Parent department ID',
-  `sort_value` int(11) DEFAULT NULL COMMENT 'Sort values',
-  `acl_rid` int(11) DEFAULT NULL COMMENT 'Aker Middle Reed',
+  `department_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '部门名称',
+  `department_director_id` int(11) DEFAULT NULL COMMENT '部门负责人ID',
+  `department_parent_id` int(11) DEFAULT NULL COMMENT '上级部门ID',
+  `sort_value` int(11) DEFAULT NULL COMMENT '排序值',
+  `acl_rid` int(11) DEFAULT NULL COMMENT 'ACL中rid',
   PRIMARY KEY (`department_id`),
   KEY `ix_common_department_deleted` (`deleted`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -2421,7 +2512,8 @@ CREATE TABLE `common_department` (
 
 LOCK TABLES `common_department` WRITE;
 /*!40000 ALTER TABLE `common_department` DISABLE KEYS */;
-INSERT INTO `common_department` VALUES (NULL,0,'2023-07-11 16:28:21','2023-07-11 16:28:21',0,'Company-wide',0,-1,0,0);
+INSERT INTO `common_department` VALUES
+(NULL, 0, '2023-07-11 16:28:21', '2023-07-11 16:28:21', 0, 'Whole Company', 0, -1, 0, 0);
 /*!40000 ALTER TABLE `common_department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2438,26 +2530,27 @@ CREATE TABLE `common_employee` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `employee_id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Mailbox',
+  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Email',
   `username` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Username',
   `nickname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Name',
   `sex` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Gender',
-  `position_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Job Title',
-  `mobile` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Phone number',
+  `position_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Position Name',
+  `mobile` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Phone Number',
   `avatar` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Avatar',
-  `direct_supervisor_id` int(11) DEFAULT NULL COMMENT 'Direct Superior ID',
+  `direct_supervisor_id` int(11) DEFAULT NULL COMMENT 'Direct Supervisor ID',
   `department_id` int(11) DEFAULT NULL COMMENT 'Department ID',
-  `acl_uid` int(11) DEFAULT NULL COMMENT 'Aker Central Euid',
-  `acl_rid` int(11) DEFAULT NULL COMMENT 'Aker Central Reed',
-  `acl_virtual_rid` int(11) DEFAULT NULL COMMENT 'Aker Central Virtual Role Reed',
-  `last_login` timestamp NULL DEFAULT NULL COMMENT 'Last login time',
-  `block` int(11) DEFAULT NULL COMMENT 'Lock status',
+  `acl_uid` int(11) DEFAULT NULL COMMENT 'ACL UID',
+  `acl_rid` int(11) DEFAULT NULL COMMENT 'ACL RID',
+  `acl_virtual_rid` int(11) DEFAULT NULL COMMENT 'ACL Virtual Role RID',
+  `last_login` timestamp NULL DEFAULT NULL COMMENT 'Last Login Time',
+  `block` int(11) DEFAULT NULL COMMENT 'Locking Status',
   `notice_info` json DEFAULT NULL,
   PRIMARY KEY (`employee_id`),
   KEY `department_id` (`department_id`),
   KEY `ix_common_employee_deleted` (`deleted`),
   CONSTRAINT `common_employee_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `common_department` (`department_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2483,8 +2576,8 @@ CREATE TABLE `common_employee_info` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `info` json DEFAULT NULL COMMENT 'Employee Information',
-  `employee_id` int(11) DEFAULT NULL COMMENT 'Employee ID',
+  `info` json DEFAULT NULL COMMENT '员工信息',
+  `employee_id` int(11) DEFAULT NULL COMMENT '员工ID',
   PRIMARY KEY (`id`),
   KEY `employee_id` (`employee_id`),
   KEY `ix_common_employee_info_deleted` (`deleted`),
@@ -2515,13 +2608,13 @@ CREATE TABLE `common_internal_message` (
   `updated_at` datetime DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Title',
-  `content` text COLLATE utf8_unicode_ci COMMENT 'Contents',
-  `path` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Jump path',
-  `is_read` tinyint(1) DEFAULT NULL COMMENT 'Read',
-  `app_name` varchar(128) COLLATE utf8_unicode_ci NOT NULL COMMENT 'App Name',
-  `category` varchar(128) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Classification',
-  `message_data` json DEFAULT NULL COMMENT 'Data',
-  `employee_id` int(11) DEFAULT NULL COMMENT 'Ed',
+  `content` text COLLATE utf8_unicode_ci COMMENT 'Content',
+  `path` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Redirect Path',
+  `is_read` tinyint(1) DEFAULT NULL COMMENT 'Whether Read',
+  `app_name` varchar(128) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Application Name',
+  `category` varchar(128) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Category',
+  `message_data` json DEFAULT NULL COMMENT 'Message Data',
+  `employee_id` int(11) DEFAULT NULL COMMENT 'Employee ID',
   PRIMARY KEY (`id`),
   KEY `employee_id` (`employee_id`),
   KEY `ix_common_internal_message_deleted` (`deleted`),
