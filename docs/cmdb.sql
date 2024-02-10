@@ -2404,6 +2404,7 @@ CREATE TABLE `common_internal_message` (
   KEY `ix_common_internal_message_deleted` (`deleted`),
   CONSTRAINT `common_internal_message_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `common_employee` (`employee_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
