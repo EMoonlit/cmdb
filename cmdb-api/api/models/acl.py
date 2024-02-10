@@ -296,29 +296,30 @@ class AuditRoleLog(Model):
 
     app_id = db.Column(db.Integer, index=True)
 
-    operate_uid = db.Column(db.Integer, comment='操作人uid', index=True)
-    operate_type = db.Column(db.String(32), comment='操作类型', index=True)
-    scope = db.Column(db.String(16), comment='范围')
-    link_id = db.Column(db.Integer, comment='资源id', index=True)
-    origin = db.Column(db.JSON, default=dict(), comment='原始数据')
-    current = db.Column(db.JSON, default=dict(), comment='当前数据')
-    extra = db.Column(db.JSON, default=dict(), comment='其他内容')
-    source = db.Column(db.String(16), default='', comment='来源')
+    operate_uid = db.Column(db.Integer, comment='operator_uid', index=True)
+    operate_type = db.Column(db.String(32), comment='operation_type', index=True)
+    scope = db.Column(db.String(16), comment='scope')
+    link_id = db.Column(db.Integer, comment='operation_type', index=True)
+    origin = db.Column(db.JSON, default=dict(), comment='original data')
+    current = db.Column(db.JSON, default=dict(), comment='current data')
+    extra = db.Column(db.JSON, default=dict(), comment='other content')
+    source = db.Column(db.String(16), default='', comment='source')
+
 
 
 class AuditResourceLog(Model):
     __tablename__ = "acl_audit_resource_logs"
 
     app_id = db.Column(db.Integer, index=True)
-    operate_uid = db.Column(db.Integer, comment='操作人uid', index=True)
-    operate_type = db.Column(db.String(16), comment='操作类型', index=True)
+    operate_uid = db.Column(db.Integer, comment='operator_uid', index=True)
+    operate_type = db.Column(db.String(16), comment='operation_type', index=True)
 
-    scope = db.Column(db.String(16), comment='范围')
-    link_id = db.Column(db.Integer, comment='资源名', index=True)
-    origin = db.Column(db.JSON, default=dict(), comment='原始数据')
-    current = db.Column(db.JSON, default=dict(), comment='当前数据')
-    extra = db.Column(db.JSON, default=dict(), comment='权限名')
-    source = db.Column(db.String(16), default='', comment='来源')
+    scope = db.Column(db.String(16), comment='scope')
+    link_id = db.Column(db.Integer, comment='resource_name', index=True)
+    origin = db.Column(db.JSON, default=dict(), comment='original_data')
+    current = db.Column(db.JSON, default=dict(), comment='current_data')
+    extra = db.Column(db.JSON, default=dict(), comment='permission_name')
+    source = db.Column(db.String(16), default='', comment='source')
 
 
 class AuditPermissionLog(Model):
@@ -326,15 +327,15 @@ class AuditPermissionLog(Model):
 
     app_id = db.Column(db.Integer, index=True)
 
-    operate_uid = db.Column(db.Integer, comment='操作人uid', index=True)
-    operate_type = db.Column(db.String(16), comment='操作类型', index=True)
+    operate_uid = db.Column(db.Integer, comment='operator_uid', index=True)
+    operate_type = db.Column(db.String(16), comment='operation_type', index=True)
 
-    rid = db.Column(db.Integer, comment='角色id', index=True)
-    resource_type_id = db.Column(db.Integer, comment='资源类型id', index=True)
-    resource_ids = db.Column(db.JSON, default=[], comment='资源')
-    group_ids = db.Column(db.JSON, default=[], comment='资源组')
-    permission_ids = db.Column(db.JSON, default=[], comment='权限')
-    source = db.Column(db.String(16), comment='来源')
+    rid = db.Column(db.Integer, comment='Character_ID', index=True)
+    resource_type_id = db.Column(db.Integer, comment='resource_type_ID', index=True)
+    resource_ids = db.Column(db.JSON, default=[], comment='resource')
+    group_ids = db.Column(db.JSON, default=[], comment='resource_group')
+    permission_ids = db.Column(db.JSON, default=[], comment='permission')
+    source = db.Column(db.String(16), comment='source')
 
 
 class AuditTriggerLog(Model):
@@ -343,13 +344,13 @@ class AuditTriggerLog(Model):
     app_id = db.Column(db.Integer, index=True)
 
     trigger_id = db.Column(db.Integer, comment='trigger', index=True)
-    operate_uid = db.Column(db.Integer, comment='操作人uid', index=True)
-    operate_type = db.Column(db.String(16), comment='操作类型', index=True)
+    operate_uid = db.Column(db.Integer, comment='operator_uid', index=True)
+    operate_type = db.Column(db.String(16), comment='operation_type', index=True)
 
-    origin = db.Column(db.JSON, default=dict(), comment='原始数据')
-    current = db.Column(db.JSON, default=dict(), comment='当前数据')
-    extra = db.Column(db.JSON, default=dict(), comment='权限名')
-    source = db.Column(db.String(16), default='', comment='来源')
+    origin = db.Column(db.JSON, default=dict(), comment='original_data')
+    current = db.Column(db.JSON, default=dict(), comment='current_data')
+    extra = db.Column(db.JSON, default=dict(), comment='permission_name')
+    source = db.Column(db.String(16), default='', comment='source')
 
 
 class AuditLoginLog(Model2):
